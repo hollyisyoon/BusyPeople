@@ -34,58 +34,58 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, name):
     tfidf_top_words = tfidf_df.sum().sort_values(ascending=False).head(num_words).to_dict()
     return tfidf_top_words
         
-def main():
-    plt.rc('font', family='NanumBarunGothic')
-    st.title('외부 트렌드 모니터링 대시보드')
 
-    #인풋
-    col1, col2, col3 = st.beta_columns(3)
-    with col1:
-        start_date = st.date_input("👉🏻 시작 날짜",
-                               value=datetime.today() - timedelta(days=45),
-                               min_value=datetime(2022, 4, 27),
-                               max_value=datetime(2023, 4, 26))
-    with col2:
-        end_date = st.date_input("끝 날짜 👈🏻", 
-                             value=datetime.today() - timedelta(days=30),    
-                             min_value=datetime(2022, 4, 27),
-                             max_value=datetime(2023, 4, 26))
+plt.rc('font', family='NanumBarunGothic')
+st.title('외부 트렌드 모니터링 대시보드')
 
-    with col3:
-        keyword_no = st.number_input("📌 키워드", value=50, min_value=1, step=1)
+#인풋
+col1, col2, col3 = st.beta_columns(3)
+with col1:
+    start_date = st.date_input("👉🏻 시작 날짜",
+                           value=datetime.today() - timedelta(days=45),
+                           min_value=datetime(2022, 4, 27),
+                           max_value=datetime(2023, 4, 26))
+with col2:
+    end_date = st.date_input("끝 날짜 👈🏻", 
+                         value=datetime.today() - timedelta(days=30),    
+                         min_value=datetime(2022, 4, 27),
+                         max_value=datetime(2023, 4, 26))
 
-    col1, col2, col3 = st.beta_columns(3)    
-    with col1:
-        st.write("🗓 ", start_date, "~", end_date)    
-    with col2:
-        st.write(keyword_no, '개의 키워드 선택')   
-    with col3:
+with col3:
+    keyword_no = st.number_input("📌 키워드", value=50, min_value=1, step=1)
 
-    #워드 클라우드  
-    words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
-    wc = WordCloud(background_color="white", 
-               max_font_size=1000, 
-               contour_width=3, 
-               colormap='Spectral', 
-               contour_color='steelblue')
-    wc.generate_from_frequencies(words)
-    plt.figure(figsize=(10, 8))
-    plt.imshow(wc, interpolation='bilinear')
-    plt.axis("off")
-    
-    #plotbar
-    words_count = Counter(words)
-    words_df = pd.DataFrame.from_dict(words_count, orient='index', columns=['count'])
-    words_df.sort_values('count', ascending=False, inplace=True)
-    fig, ax = plt.subplots(figsize=(10, 4))
-    words_df.plot(kind='bar', ax=ax)
-    ax.set_title('Top Words')
-    ax.set_xlabel('Words')
-    ax.set_ylabel('Count')
-    ax.tick_params(axis='x', labelrotation=45, labelsize=8) 
-    label_size = st.slider('X-Axis Label Size', 1, 20, 8)
-    ax.tick_params(axis='x', labelrotation=45, labelsize=label_size)
-    st.pyplot(fig)    
-    
-if __name__ == '__main__':
-    main()    
+col1, col2, col3 = st.beta_columns(3)    
+with col1:
+    st.write("🗓 ", start_date, "~", end_date)    
+with col2:
+    st.write(keyword_no, '개의 키워드 선택')   
+with col3:
+    st.write('식물갤러리')   
+
+#워드 클라우드  
+words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
+wc = WordCloud(background_color="white", 
+           max_font_size=1000, 
+           colormap='Spectral', 
+           contour_color='steelblue',
+           font_path='NanumBarunGothic.ttf')
+wc.generate_from_frequencies(words)
+plt.imshow(cloud, interpolation='bilinear')
+plt.axis("off")
+plt.show()
+st.pyplot(fig)
+
+#plotbar
+words_count = Counter(words)
+words_df = pd.DataFrame.from_dict(words_count, orient='index', columns=['count'])
+words_df.sort_values('count', ascending=False, inplace=True)
+fig, ax = plt.subplots(figsize=(10, 4))
+words_df.plot(kind='bar', ax=ax)
+ax.set_title('Top Words')
+ax.set_xlabel('Words')
+ax.set_ylabel('Count')
+ax.tick_params(axis='x', labelrotation=45, labelsize=8) 
+label_size = st.slider('X-Axis Label Size', 1, 20, 8)
+ax.tick_params(axis='x', labelrotation=45, labelsize=label_size)
+st.pyplot(fig)    
+     
