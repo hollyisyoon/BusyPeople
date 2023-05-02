@@ -24,11 +24,12 @@ title = st.text_input('Movie title', 'Life of Brian')
 st.write('The current movie title is', title)
 
 with col1:   
-    optiont1 = st.selectbox(
-        '보고싶은 옵션을 선택하세요!',
-        ('자사', '경쟁사'))
-
-    st.write('현재 선택한 옵션:', optiont1)
+    option2 = st.selectbox(
+        "보고싶은 옵션을 선택하세요!",
+        ('자사', '경쟁사'),
+        label_visibility=st.session_state.visibility,
+        disabled=st.session_state.disabled,
+    )
 
 with col2:
     option = st.selectbox(
