@@ -29,4 +29,5 @@ with col1:
     option_1 = st.selectbox('Option 1', ['자사', '경쟁사'],key='option1')
 with col2:
      # selectbox에 날짜 목록을 전달합니다.
-    option_2 = st.selectbox('Option 2', ['1시간', '2시간'],key='option2')
+    t = st.time_input('Set an alarm for', datetime.time(8, 45))
+    st.write('Alarm is set for', t)
