@@ -30,12 +30,12 @@ df['name'] = df['name'].astype(str)
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
-#     start_date = pd.to_datetime(start_date)
-#     last_date = pd.to_datetime(last_date)
+    start_date = pd.to_datetime(start_date)
+    last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     tfidf_vectorizer = TfidfVectorizer()
     tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
-    tfidf_df = pd.DataFrame(tfidf.todense(), columns=tfidf_vectorizer.get_feature_names())
+    tfidf_df = pd.DataFrame(tfidf.todense(), columns=tfidf_vectorizer.get_feature_names_out())
     tfidf_top_words = tfidf_df.sum().sort_values(ascending=False).head(num_words).to_dict()
     return tfidf_top_words
 
