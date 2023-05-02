@@ -63,6 +63,7 @@ with col2:
     st.write(keyword_no, '개의 키워드 선택')   
 with col3:
     st.write('식물갤러리')   
+    st.write(type(start_date),type(end_date))
 
 # Get top words
 # start_date = pd.to_datetime(start_date)
