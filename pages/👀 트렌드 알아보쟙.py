@@ -35,7 +35,7 @@ with col1:
 with col2:
     st.write(keyword_no, '개의 키워드 선택')   
 with col3:
-    media = st.multiselect('모니터링할 곳은~?',['식물갤러리'], default=['식물갤러리'])
+    media = st.multiselect('모니터링할 곳은~?',['식물갤러리'], default='식물갤러리')
 
 #데이터 전처리
 def to_list(text):
