@@ -55,7 +55,7 @@ def plot_wordcloud(words):
     plt.imshow(wc, interpolation='bilinear')
     plt.axis("off")
     
-def get_tfidf_top_words(df, start_date=None, last_date=None, num_words=10, name):
+def get_tfidf_top_words(df, start_date=None, last_date=None, num_words, name):
     df = df[df['name'] == name]
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     tfidf_vectorizer = TfidfVectorizer()
