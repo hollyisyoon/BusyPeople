@@ -30,11 +30,3 @@ with col1:
         label_visibility=st.session_state.visibility,
         disabled=st.session_state.disabled,
     )
-
-with col2:
-    option = st.selectbox(
-        "보고싶은 옵션을 선택하세요!",
-        ('자사', '경쟁사'),
-        label_visibility=st.session_state.visibility,
-        disabled=st.session_state.disabled,
-    )
