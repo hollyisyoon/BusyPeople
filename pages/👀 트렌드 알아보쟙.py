@@ -23,32 +23,6 @@ rain(emoji="🦝",
     falling_speed=10,
     animation_length="infinite")
 
-#워드 클라우드
-def plot_wordcloud(words):
-    wc = WordCloud(background_color="white", 
-                   max_font_size=1000, 
-                   contour_width=3, 
-                   colormap='Spectral', 
-                   contour_color='steelblue')
-    wc.generate_from_frequencies(words)
-    plt.figure(figsize=(10, 8))
-    plt.imshow(wc, interpolation='bilinear')
-    plt.axis("off")
-
-def plot_bar(words):
-    words_count = Counter(words)
-    words_df = pd.DataFrame.from_dict(words_count, orient='index', columns=['count'])
-    words_df.sort_values('count', ascending=False, inplace=True)
-    fig, ax = plt.subplots(figsize=(10, 4))
-    words_df.plot(kind='bar', ax=ax)
-    ax.set_title('Top Words')
-    ax.set_xlabel('Words')
-    ax.set_ylabel('Count')
-    ax.tick_params(axis='x', labelrotation=45, labelsize=8) 
-    label_size = st.slider('X-Axis Label Size', 1, 20, 8)
-    ax.tick_params(axis='x', labelrotation=45, labelsize=label_size)
-    st.pyplot(fig)    
-    
 def get_tfidf_top_words(df, start_date, last_date, num_words, name):
     df = df[df['name'] == name]
     start_date = pd.to_datetime(start_date)
@@ -58,9 +32,7 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, name):
     tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
     tfidf_df = pd.DataFrame(tfidf.todense(), columns=tfidf_vectorizer.get_feature_names())
     tfidf_top_words = tfidf_df.sum().sort_values(ascending=False).head(num_words).to_dict()
-    plt.figure(figsize=(12, 6))
-    plot_wordcloud(tfidf_top_words)
-    plot_bar(tfidf_top_words)
+    return tfidf_top_words
         
 def main():
     plt.rc('font', family='NanumBarunGothic')
@@ -88,9 +60,32 @@ def main():
     with col2:
         st.write(keyword_no, '개의 키워드 선택')   
     with col3:
-    #media = st.multiselect('모니터링할 곳은~?',['식물갤러리'], default='식물갤러리')
 
-    get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
+    #워드 클라우드  
+    words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
+    wc = WordCloud(background_color="white", 
+               max_font_size=1000, 
+               contour_width=3, 
+               colormap='Spectral', 
+               contour_color='steelblue')
+    wc.generate_from_frequencies(words)
+    plt.figure(figsize=(10, 8))
+    plt.imshow(wc, interpolation='bilinear')
+    plt.axis("off")
+    
+    #plotbar
+    words_count = Counter(words)
+    words_df = pd.DataFrame.from_dict(words_count, orient='index', columns=['count'])
+    words_df.sort_values('count', ascending=False, inplace=True)
+    fig, ax = plt.subplots(figsize=(10, 4))
+    words_df.plot(kind='bar', ax=ax)
+    ax.set_title('Top Words')
+    ax.set_xlabel('Words')
+    ax.set_ylabel('Count')
+    ax.tick_params(axis='x', labelrotation=45, labelsize=8) 
+    label_size = st.slider('X-Axis Label Size', 1, 20, 8)
+    ax.tick_params(axis='x', labelrotation=45, labelsize=label_size)
+    st.pyplot(fig)    
     
 if __name__ == '__main__':
     main()    
