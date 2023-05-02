@@ -64,8 +64,8 @@ with col3:
     st.write('식물갤러리')   
 
 # Get top words
-words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
 df = df[(df['name'] == '식물갤러리') & (df['time'] >= start_date) & (df['time'] <= end_date)]
+words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
 
 # Create word cloud
 wc = WordCloud(background_color="white", 
