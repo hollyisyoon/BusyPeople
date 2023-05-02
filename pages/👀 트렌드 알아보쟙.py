@@ -18,10 +18,10 @@ rain(emoji="🦝",
 
 #데이터 전처리
 def to_list(text):
-try:
-    return ast.literal_eval(text)
-except (ValueError, SyntaxError):
-    return []
+    try:
+        return ast.literal_eval(text)
+    except (ValueError, SyntaxError):
+        return []
 
 df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv')
 df['title+content'] = df['title+content'].map(to_list)
