@@ -10,6 +10,14 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from collections import Counter
 from wordcloud import WordCloud
 
+#데이터 전처리
+def to_list(text):
+    return ast.literal_eval(text)
+df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv')
+df['title+content'] = df['title+content'].map(to_list)
+df['time'] = pd.to_datetime(df['time'])
+df = df.dropna(subset=['title+content'])
+
 rain(emoji="🦝",
     font_size=54,
     falling_speed=10,
@@ -38,14 +46,6 @@ with col2:
     st.write(keyword_no, '개의 키워드 선택')   
 with col3:
     media = st.multiselect('모니터링할 곳은~?',['식물갤러리'], default='식물갤러리')
-     
-
-#데이터 전처리
-def to_list(text):
-    return ast.literal_eval(text)
-df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv')
-df['title+content'] = df['title+content'].map(to_list)
-df['time'] = pd.to_datetime(df['time'])
 
 #워드 클라우드
 def plot_wordcloud(words):
