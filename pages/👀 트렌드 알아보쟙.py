@@ -93,7 +93,6 @@ st.pyplot(fig1)
 # Create bar graph
 words_count = Counter(words)
 words_df = pd.DataFrame([words_count]).T
-words_df
 # words_df = words_df.sort_values('count', ascending=False, inplace=True)
 
 # fig2, ax2 = plt.subplots(figsize=(10, 4))
