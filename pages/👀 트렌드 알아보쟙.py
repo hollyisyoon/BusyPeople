@@ -30,8 +30,8 @@ df['name'] = df['name'].astype(str)
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
-    start_date = pd.to_datetime(start_date)
-    last_date = pd.to_datetime(last_date)
+#     start_date = pd.to_datetime(start_date)
+#     last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     tfidf_vectorizer = TfidfVectorizer()
     tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
@@ -65,8 +65,8 @@ with col3:
     st.write('식물갤러리')   
 
 # Get top words
-start_date = pd.to_datetime(start_date)
-end_date = pd.to_datetime(end_date)
+# start_date = pd.to_datetime(start_date)
+# end_date = pd.to_datetime(end_date)
 df = df[(df['name'] == '식물갤러리') & (df['time'] >= start_date) & (df['time'] <= end_date)]
 words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
 
