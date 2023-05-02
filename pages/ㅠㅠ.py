@@ -29,4 +29,4 @@ with col1:
     option_1 = st.selectbox('Option 1', ['자사', '경쟁사'],key='option1')
 with col2:
      # selectbox에 날짜 목록을 전달합니다.
-    selected_date = st.selectbox('날짜 선택', date_strings,key='option2')
+    option_2 = st.selectbox('Option 2', ['1시간', '2시간'],key='option2')
