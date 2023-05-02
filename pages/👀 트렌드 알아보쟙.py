@@ -109,8 +109,8 @@ def get_tfidf_top_words(df, start_date=None, last_date=None, num_words=10, name=
     plt.show()    
     
     
-def main():
+def main(df):
     get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
     
 if __name__ == '__main__':
-    main()    
+    main(df)    
