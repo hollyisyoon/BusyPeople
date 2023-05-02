@@ -22,7 +22,6 @@ def to_list(text):
 df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv')
 df['title+content'] = df['title+content'].map(to_list)
 df['time'] = pd.to_datetime(df['time'])
-df = df[(df['name'] == '식물갤러리') & (df['time'] >= start_date) & (df['time'] <= end_date)]
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
@@ -62,6 +61,7 @@ with col3:
 
 # Get top words
 words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
+df = df[(df['name'] == '식물갤러리') & (df['time'] >= start_date) & (df['time'] <= end_date)]
 
 # Create word cloud
 wc = WordCloud(background_color="white", 
