@@ -24,7 +24,7 @@ rain(emoji="🦝",
 #         return []
 
 df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv')
-df['title+content'] = df['title+content'].map(to_list)
+# df['title+content'] = df['title+content'].map(to_list)
 df['time'] = pd.to_datetime(df['time'])
 df['name'] = df['name'].astype(str)
 
