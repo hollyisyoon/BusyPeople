@@ -26,5 +26,5 @@ st.write('The current movie title is', title)
   
 option1 = st.selectbox(
 '옵션을 선택하세요',
-('자사', '경쟁사')
+('자사', '경쟁사'))
 
