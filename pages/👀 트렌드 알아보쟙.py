@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 import ast
 import time
 
@@ -11,7 +12,7 @@ from collections import Counter
 from wordcloud import WordCloud
 from datetime import datetime, timedelta
 import koreanize_matplotlib
-import matplotlib.font_manager as fm
+
 
 # plt.rcParams['axes.unicode_minus'] = False
 # plt.rc('font', family = 'NanumBarunGothic')
