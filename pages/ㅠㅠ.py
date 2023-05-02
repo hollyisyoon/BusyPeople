@@ -23,7 +23,7 @@ st.write('You selected:', options)
 title = st.text_input('Movie title', 'Life of Brian')
 st.write('The current movie title is', title)
 
-with col1:   
-    option1 = st.selectbox(
-    'How would you like to be contacted?',
-    ('Email', 'Home phone', 'Mobile phone'))
+  
+option1 = st.selectbox(
+'옵션을 선택하세요',
+('자사', '경쟁사'))
