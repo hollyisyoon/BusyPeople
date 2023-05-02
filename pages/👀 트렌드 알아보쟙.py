@@ -54,50 +54,9 @@ def plot_wordcloud(words):
     plt.figure(figsize=(10, 8))
     plt.imshow(wc, interpolation='bilinear')
     plt.axis("off")
-
-def plot_bar(words):
-    words_count = Counter(words)
-    words_df = pd.DataFrame.from_dict(words_count, orient='index', columns=['count'])
-    words_df.sort_values('count', ascending=False, inplace=True)
-    fig, ax = plt.subplots(figsize=(10, 4))
-    words_df.plot(kind='bar', ax=ax)
-    ax.set_title('Top Words')
-    ax.set_xlabel('Words')
-    ax.set_ylabel('Count')
-    ax.tick_params(axis='x', labelrotation=45, labelsize=8) 
     
-    # Add slider for adjusting x-axis label size
-    label_size = st.slider('X-Axis Label Size', 1, 20, 8)
-    ax.tick_params(axis='x', labelrotation=45, labelsize=label_size)
-
-    st.pyplot(fig)
-    
-def get_count_top_words(df, start_date=None, last_date=None, num_words=10, name=None):
-    if name is not None:
-        df = df[df['name'] == name]
-    if start_date is None:
-        start_date = df['time'].min().strftime('%Y-%m-%d')
-    if last_date is None:
-        last_date = df['time'].max().strftime('%Y-%m-%d')
-    df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
-    count_vectorizer = CountVectorizer()
-    count = count_vectorizer.fit_transform(df['title+content'].values)
-    count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
-    count_top_words = count_df.sum().sort_values(ascending=False).head(num_words).to_dict()
-    
-    plt.figure(figsize=(12, 6))
-    plot_wordcloud(count_top_words)
-    plot_bar(count_top_words)
-    plt.show()
-
-    
-def get_tfidf_top_words(df, start_date=None, last_date=None, num_words=10, name=None):
-    if name is not None:
-        df = df[df['name'] == name]
-    if start_date is None:
-        start_date = df['time'].min().strftime('%Y-%m-%d')
-    if last_date is None:
-        last_date = df['time'].max().strftime('%Y-%m-%d')
+def get_tfidf_top_words(df, start_date=None, last_date=None, num_words=10, name):
+    df = df[df['name'] == name]
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     tfidf_vectorizer = TfidfVectorizer()
     tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
@@ -107,8 +66,7 @@ def get_tfidf_top_words(df, start_date=None, last_date=None, num_words=10, name=
     plot_wordcloud(tfidf_top_words)
     plot_bar(tfidf_top_words)
     plt.show()    
-    
-    
+        
 def main(df):
     get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
     
