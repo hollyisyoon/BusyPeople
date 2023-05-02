@@ -70,7 +70,6 @@ end_date = pd.Timestamp(end_date)
 # Get top words
 # start_date = pd.to_datetime(start_date)
 # end_date = pd.to_datetime(end_date)
-st.write(type(start_date) == type(df['time'][0]))
 df = df[(df['name'] == '식물갤러리') & (df['time'] >= start_date) & (df['time'] <= end_date)]
 words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
 
