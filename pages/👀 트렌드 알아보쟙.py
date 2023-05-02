@@ -87,7 +87,7 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, name):
     plot_bar(tfidf_top_words)
         
 def main():
-    get_tfidf_top_words(df, start_date, end_date, keyword_no, media[0])
+    get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
     
 if __name__ == '__main__':
     main()    
