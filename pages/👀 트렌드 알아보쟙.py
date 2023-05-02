@@ -13,8 +13,6 @@ from datetime import datetime, timedelta
 import koreanize_matplotlib
 import matplotlib.font_manager as fm
 
-font_path = 'NanumBarunGothic' # 사용할 폰트 파일 경로 지정
-fontprop = fm.FontProperties(fname=font_path)
 
 rain(emoji="🦝",
     font_size=54,
@@ -98,7 +96,7 @@ words_df.sort_values('count', ascending=False, inplace=True)
 fig2, ax2 = plt.subplots(figsize=(10, 4))
 words_df.plot(kind='bar', ax=ax2)
 ax2.set_title('Top Words')
-ax2.set_xlabel('Words', fontproperties=fontprop)
+ax2.set_xlabel('Words')
 ax2.set_ylabel('Count')
 ax2.tick_params(axis='x', labelrotation=45, labelsize=8)
 label_size = st.slider('X-Axis Label Size', 1, 20, 8)
