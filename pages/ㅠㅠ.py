@@ -28,4 +28,4 @@ col1, col2 = st.columns(2)
 with col1:
     option_1 = st.selectbox('Option 1', ['A', 'B', 'C'],key='option1')
 with col2:
-    option_2 = st.selectbox('Option 2', ['X', 'Y', 'Z'],,key='option2')
+    option_2 = st.selectbox('Option 2', ['X', 'Y', 'Z'],key='option2')
