@@ -106,6 +106,6 @@ fig.update_layout(xaxis=dict(domain=[0, 0.45]), yaxis=dict(domain=[0, 1]),
 
 fig
 
-url = "https://public.tableau.com/app/profile/.66173505/viz/KBOOPS/1"
+url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:display_count=n&:origin=viz_share_link"
 html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
 st.markdown(html, unsafe_allow_html=True)
