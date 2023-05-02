@@ -26,7 +26,4 @@ st.write('The current movie title is', title)
 with col1:   
     option2 = st.selectbox(
         "보고싶은 옵션을 선택하세요!",
-        ('자사', '경쟁사'),
-        label_visibility=st.session_state.visibility,
-        disabled=st.session_state.disabled,
-    )
+        ('자사', '경쟁사'))
