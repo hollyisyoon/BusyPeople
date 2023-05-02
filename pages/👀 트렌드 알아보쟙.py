@@ -40,7 +40,8 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     tfidf_top_words = tfidf_df.sum().sort_values(ascending=False).head(num_words).to_dict()
     return tfidf_top_words
 
-plt.rc('font', family='NanumBarunGothic')
+plt.rcParams['axes.unicode_minus'] = False
+plt.rc('font', family = 'NanumBarunGothic')
 st.title('외부 트렌드 모니터링 대시보드')
 #인풋
 col1, col2, col3 = st.beta_columns(3)
