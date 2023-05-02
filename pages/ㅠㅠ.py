@@ -25,3 +25,6 @@ st.write('The current movie title is', title)
 
     
     
+ option = st.selectbox(
+        "How would you like to be contacted?",
+        ("Email", "Home phone", "Mobile phone"),
