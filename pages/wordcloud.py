@@ -8,9 +8,9 @@ from wordcloud import WordCloud
 
 import streamlit as st
 
-font_url = 'https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/font/NanumBarunGothic.ttf'
+# font_url = 'https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/font/NanumBarunGothic.ttf'
 
-wget.download(font_url)
+# wget.download(font_url)
 
 df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/%EC%96%B4%EA%B0%84.csv')
 
