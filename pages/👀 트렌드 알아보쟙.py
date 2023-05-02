@@ -40,7 +40,7 @@ with col3:
 #데이터 전처리
 def to_list(text):
     return ast.literal_eval(text)
-df = pd.read_csv('https://github.com/seoinhyeok96/BusyPeople/blob/86ca99d16d0132b10796c18cbb0a78931f671b64/data/plant_gallery.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv')
 df['title+content'] = df['title+content'].map(to_list)
 
 #워드 클라우드
