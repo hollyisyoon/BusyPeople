@@ -63,13 +63,14 @@ with col2:
     st.write(keyword_no, '개의 키워드 선택')   
 with col3:
     st.write('식물갤러리')   
-    st.write(type(start_date) == type(df['time'][0]))
 
 # Get top words
 # start_date = pd.to_datetime(start_date)
 # end_date = pd.to_datetime(end_date)
 df = df[(df['name'] == '식물갤러리') & (df['time'] >= start_date) & (df['time'] <= end_date)]
 words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
+
+st.write(type(start_date) == type(df['time'][0]))
 
 # Create word cloud
 wc = WordCloud(background_color="white", 
