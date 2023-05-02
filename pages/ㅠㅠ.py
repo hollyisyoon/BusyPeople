@@ -6,6 +6,7 @@ from collections import Counter
 from wordcloud import WordCloud
 import koreanize_matplotlib
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+import datetime
 
 st.title('한눈에 보는 데이터 프레임')
 agree = st.checkbox('밴드')
