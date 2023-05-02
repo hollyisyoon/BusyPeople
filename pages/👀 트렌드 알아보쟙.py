@@ -64,6 +64,9 @@ with col2:
 with col3:
     st.write('식물갤러리')   
 
+start_date = pd.Timestamp(start_date)
+end_date = pd.Timestamp(end_date)
+
 # Get top words
 # start_date = pd.to_datetime(start_date)
 # end_date = pd.to_datetime(end_date)
