@@ -93,7 +93,8 @@ st.pyplot(fig1)
 # Create bar graph
 words_count = Counter(words)
 words_df = pd.DataFrame.from_dict(words_count, orient='index', columns=['count'])
-words_df.sort_values('count', ascending=False, inplace=True)
+words_df = words_df.sort_values('count', ascending=False, inplace=True)
+
 # fig2, ax2 = plt.subplots(figsize=(10, 4))
 # words_df.plot(kind='bar', ax=ax2)
 # ax2.set_title('Top Words')
@@ -102,6 +103,6 @@ words_df.sort_values('count', ascending=False, inplace=True)
 # ax2.tick_params(axis='x', labelrotation=45, labelsize=8)
 # label_size = st.slider('X-Axis Label Size', 1, 20, 8)
 # ax2.tick_params(axis='x', labelrotation=45, labelsize=label_size)
-st.pyplot(words_df)
+st.bar_chart(words_df)
          
      
