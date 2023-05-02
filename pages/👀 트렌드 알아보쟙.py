@@ -27,8 +27,6 @@ with col2:
                          value=datetime.today() - timedelta(days=30),    
                          min_value=datetime(2022, 4, 27),
                          max_value=datetime(2023, 4, 26))
-start_date = pd.to_datetime(start_date)
-end_date = pd.to_datetime(end_date)   
 
 with col3:
     keyword_no = st.number_input("📌 키워드", value=50, min_value=1, step=1)
@@ -77,6 +75,8 @@ def plot_bar(words):
     
 def get_tfidf_top_words(df, start_date, last_date, num_words, name):
     df = df[df['name'] == name]
+    start_date = pd.to_datetime(start_date)
+    last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     tfidf_vectorizer = TfidfVectorizer()
     tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
