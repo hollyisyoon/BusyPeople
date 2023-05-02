@@ -32,7 +32,8 @@ st.write('현재 선택한 옵션:', option)
 
 with col2:
     option = st.selectbox(
-    '보고싶은 옵션을 선택하세요!',
-    ('자사', '경쟁사'))
-
-st.write('현재 선택한 옵션:', option)
+        "보고싶은 옵션을 선택하세요!",
+        ('자사', '경쟁사'),
+        label_visibility=st.session_state.visibility,
+        disabled=st.session_state.disabled,
+    )
