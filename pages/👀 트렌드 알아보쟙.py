@@ -63,6 +63,9 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, name):
     plot_bar(tfidf_top_words)
         
 def main():
+    plt.rc('font', family='NanumBarunGothic')
+    st.title('외부 트렌드 모니터링 대시보드')
+
     #인풋
     col1, col2, col3 = st.beta_columns(3)
     with col1:
@@ -85,7 +88,7 @@ def main():
     with col2:
         st.write(keyword_no, '개의 키워드 선택')   
     with col3:
-    #     media = st.multiselect('모니터링할 곳은~?',['식물갤러리'], default='식물갤러리')
+    #media = st.multiselect('모니터링할 곳은~?',['식물갤러리'], default='식물갤러리')
 
     get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
     
