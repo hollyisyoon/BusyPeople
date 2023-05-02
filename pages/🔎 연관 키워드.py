@@ -34,7 +34,7 @@ def main():
     # 폰트 설정
     plt.rc('font', family='NanumBarunGothic')
     st.title('Networkx 그려보자')
-    message = st.text_area('궁금한 키워드를 입력하세요(1개만 입력)')
+    message = st.text_area('🔮 무슨 키워드가 궁금하신가요 (1개만 입력해주떼용)')
     keyword = message
     if st.button('분석하기'):
         with st.spinner('분석 중입니다...'):
