@@ -10,6 +10,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from collections import Counter
 from wordcloud import WordCloud
 from datetime import datetime, timedelta
+import koreanize_matplotlib
 
 rain(emoji="🦝",
     font_size=54,
