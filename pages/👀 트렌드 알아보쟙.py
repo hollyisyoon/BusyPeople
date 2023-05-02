@@ -43,6 +43,7 @@ def to_list(text):
     return ast.literal_eval(text)
 df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv')
 df['title+content'] = df['title+content'].map(to_list)
+df['time'] = pd.to_datetime(df['time'])
 
 #워드 클라우드
 def plot_wordcloud(words):
