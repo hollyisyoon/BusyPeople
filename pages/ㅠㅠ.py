@@ -24,7 +24,8 @@ title = st.text_input('Movie title', 'Life of Brian')
 st.write('The current movie title is', title)
 
   
-option1 = st.selectbox(
-'옵션을 선택하세요',
-('자사', '경쟁사'))
+with st.beta_columns(2):
+    option_1 = st.selectbox('Option 1', ['A', 'B', 'C'])
+with st.beta_columns(2):
+    option_2 = st.selectbox('Option 2', ['X', 'Y', 'Z'])
 
