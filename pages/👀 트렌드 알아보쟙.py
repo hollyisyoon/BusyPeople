@@ -18,7 +18,11 @@ rain(emoji="🦝",
 
 #데이터 전처리
 def to_list(text):
+try:
     return ast.literal_eval(text)
+except (ValueError, SyntaxError):
+    return []
+
 df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv')
 df['title+content'] = df['title+content'].map(to_list)
 df['time'] = pd.to_datetime(df['time'])
@@ -29,7 +33,7 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     tfidf_vectorizer = TfidfVectorizer()
-    tfidf = tfidf_vectorizer.fit_transform(df['title+content'].to_list())
+    tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
     tfidf_df = pd.DataFrame(tfidf.todense(), columns=tfidf_vectorizer.get_feature_names())
     tfidf_top_words = tfidf_df.sum().sort_values(ascending=False).head(num_words).to_dict()
     return tfidf_top_words
