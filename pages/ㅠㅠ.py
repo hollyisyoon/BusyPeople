@@ -20,12 +20,14 @@ st.write('You selected:', options)
 
 
     
-title = st.text_input('Movie title', 'Life of Brian')
-st.write('The current movie title is', title)
+
 
   
-with st.beta_columns(2):
-    option_1 = st.selectbox('Option 1', ['A', 'B', 'C'])
-with st.beta_columns(2):
-    option_2 = st.selectbox('Option 2', ['X', 'Y', 'Z'])
+option_1 = st.selectbox('Option 1', ['A', 'B', 'C'])
+option_2 = st.selectbox('Option 2', ['X', 'Y', 'Z'])
 
+col1, col2 = st.columns(2)
+with col1:
+    option_1 = st.selectbox('Option 1', ['A', 'B', 'C'])
+with col2:
+    option_2 = st.selectbox('Option 2', ['X', 'Y', 'Z'])
