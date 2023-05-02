@@ -11,28 +11,25 @@ from collections import Counter
 from wordcloud import WordCloud
 from datetime import datetime, timedelta
 
+rain(emoji="🦝",
+    font_size=54,
+    falling_speed=10,
+    animation_length="infinite")
+
 #데이터 전처리
 def to_list(text):
     return ast.literal_eval(text)
 df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv')
 df['title+content'] = df['title+content'].map(to_list)
 df['time'] = pd.to_datetime(df['time'])
+df = df[(df['name'] == '식물갤러리') & (df['time'] >= start_date) & (df['time'] <= end_date)]
 
-rain(emoji="🦝",
-    font_size=54,
-    falling_speed=10,
-    animation_length="infinite")
+#TfidfVectorizer
+tfidf_vectorizer = TfidfVectorizer()
+tfidf = tfidf_vectorizer.fit_transform(df['title+content'])
+tfidf_df = pd.DataFrame(tfidf.todense(), columns=tfidf_vectorizer.get_feature_names())
+top_words = tfidf_df.sum().sort_values(ascending=False).head(keyword_no).to_dict()
 
-def get_tfidf_top_words(df, start_date, last_date, num_words, media):
-    df = df[df['name'] == media]
-    start_date = pd.to_datetime(start_date)
-    last_date = pd.to_datetime(last_date)
-    df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
-    tfidf_vectorizer = TfidfVectorizer()
-    tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
-    tfidf_df = pd.DataFrame(tfidf.todense(), columns=tfidf_vectorizer.get_feature_names())
-    tfidf_top_words = tfidf_df.sum().sort_values(ascending=False).head(num_words).to_dict()
-    return tfidf_top_words
 
 plt.rc('font', family='NanumBarunGothic')
 st.title('외부 트렌드 모니터링 대시보드')
@@ -59,23 +56,20 @@ with col2:
 with col3:
     st.write('식물갤러리')   
 
-# Get top words
-words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
-
 # Create word cloud
 wc = WordCloud(background_color="white", 
                max_font_size=1000, 
                colormap='Spectral', 
                contour_color='steelblue',
                font_path='NanumBarunGothic.ttf')
-wc.generate_from_frequencies(words)
+wc.generate_from_frequencies(top_words)
 fig1, ax1 = plt.subplots()
 ax1.imshow(wc, interpolation='bilinear')
 ax1.axis("off")
 st.pyplot(fig1)
 
 # Create bar graph
-words_count = Counter(words)
+words_count = Counter(top_words)
 words_df = pd.DataFrame.from_dict(words_count, orient='index', columns=['count'])
 words_df.sort_values('count', ascending=False, inplace=True)
 fig2, ax2 = plt.subplots(figsize=(10, 4))
