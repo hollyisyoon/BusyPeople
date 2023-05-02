@@ -92,7 +92,7 @@ st.pyplot(fig1)
 
 # Create bar graph
 words_count = Counter(words)
-words_df = pd.DataFrame.from_dict(words_count, orient='index', columns=['count'])
+words_df = pd.DataFrame.from_dict(dict(words_count), orient='index', columns=['count'])
 words_df = words_df.sort_values('count', ascending=False, inplace=True)
 words_df
 
