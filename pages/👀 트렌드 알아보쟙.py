@@ -45,7 +45,7 @@ with col1:
 with col2:
     st.write(keyword_no, '개의 키워드 선택')   
 with col3:
-    media = st.multiselect('모니터링할 곳은~?',['식물갤러리'], default='식물갤러리')
+#     media = st.multiselect('모니터링할 곳은~?',['식물갤러리'], default='식물갤러리')
 
 #워드 클라우드
 def plot_wordcloud(words):
