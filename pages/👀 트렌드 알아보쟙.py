@@ -27,6 +27,9 @@ with col2:
                          value=datetime.today() - timedelta(days=30),    
                          min_value=datetime(2022, 4, 27),
                          max_value=datetime(2023, 4, 26))
+start_date = pd.to_datetime(start_date)
+end_date = pd.to_datetime(end_date)   
+
 with col3:
     keyword_no = st.number_input("📌 키워드", value=50, min_value=1, step=1)
 
@@ -37,6 +40,7 @@ with col2:
     st.write(keyword_no, '개의 키워드 선택')   
 with col3:
     media = st.multiselect('모니터링할 곳은~?',['식물갤러리'], default='식물갤러리')
+     
 
 #데이터 전처리
 def to_list(text):
