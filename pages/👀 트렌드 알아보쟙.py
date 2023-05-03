@@ -85,24 +85,27 @@ wc = WordCloud(background_color="white",
                contour_color='steelblue',
                font_path='/app/busypeople-stramlit/font/NanumBarunGothic.ttf')
 wc.generate_from_frequencies(words)
-words_dict = wc.to_dict()
-wordcloud = go.Scatter(x=[0], y=[0], mode="text", text=list(words_dict.keys()),
-                       hoverinfo='text', textfont=dict(size=list(words_dict.values()),
-                                                       color=[plotly.colors.DEFAULT_PLOTLY_COLORS[i] 
-                                                              for i in range(len(words_dict))]))
+words_dict = dict(wc.words_)
 
+# Create list of dictionaries with word and size fields
+word_list = [{'text': word, 'size': size} for word, size in words_dict.items()]
+
+# Create trace for WordCloud
+wordcloud = go.Scatter(x=[0], y=[0], mode="text", text=[word['text'] for word in word_list],
+                       hoverinfo='text', textfont=dict(size=[word['size'] for word in word_list],
+                                                       color=[plotly.colors.DEFAULT_PLOTLY_COLORS[i] 
+                                                              for i in range(len(word_list))]))
+
+# Create layout for plot
 layout = go.Layout(
     xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
     yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
     hovermode='closest'
 )
+
+# Create figure
 fig = go.Figure(data=[wordcloud], layout=layout)
 fig.update_layout(title="WordCloud")
-st.plotly_chart(fig)
 
-# Create bar graph
-words_count = Counter(words)
-words_df = pd.DataFrame([words_count]).T
-st.bar_chart(words_df)
-         
-     
+# Show plot
+st.plotly_chart(fig)
