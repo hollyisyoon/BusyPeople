@@ -88,28 +88,38 @@ else :
 #워드클라우드
 wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue')
 wc.generate_from_frequencies(words)
-words_dict = dict(wc.words_)
 
-# Wordcloud를 위한 데이터 프레임 생성
-df = pd.DataFrame({
-    'text': list(words_dict.keys()),
-    'size': list(words_dict.values()),
-    'color': np.random.choice(palette, len(words_dict))
-})
 
-# 컬러 팔레트 생성
-palette = np.random.choice(['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
-                            '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'], 50, replace=True)
+############동적 워드 클라우드####################
+# # Wordcloud를 위한 데이터 프레임 생성
+# words_dict = dict(wc.words_)
+# df = pd.DataFrame({
+#     'text': list(words_dict.keys()),
+#     'size': list(words_dict.values()),
+#     'color': np.random.choice(palette, len(words_dict))
+# })
 
-# WordCloud 시각화를 위한 Scatter Plot 생성
-fig = go.Figure(go.Scatter(
-    x=[0], y=[0], mode="text",
-    text=df['text'],
-    textfont=dict(size=df['size'], color=df['color']),
-))
-fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-                  yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
-st.plotly_chart(fig)
+# # 컬러 팔레트 생성
+# palette = np.random.choice(['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
+#                             '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'], 50, replace=True)
+
+# # WordCloud 시각화를 위한 Scatter Plot 생성
+# fig = go.Figure(go.Scatter(
+#     x=[0], y=[0], mode="text",
+#     text=df['text'],
+#     textfont=dict(size=df['size'], color=df['color']),
+# ))
+# fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+#                   yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
+# st.plotly_chart(fig)
+
+
+##########정적 워드 클라우드##########
+fig1, ax1 = plt.subplots()
+ax1.imshow(wc, interpolation='bilinear')
+ax1.axis("off")
+st.pyplot(fig1)
+
 
 # 바그래프
 words_count = Counter(words)
