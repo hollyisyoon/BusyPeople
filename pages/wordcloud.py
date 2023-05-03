@@ -1,7 +1,3 @@
-import wget
-font_url = 'https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/font/NanumBarunGothic.ttf'
-wget.download(font_url)
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import koreanize_matplotlib
