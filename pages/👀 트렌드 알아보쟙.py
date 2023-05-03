@@ -78,8 +78,8 @@ with col1:
 with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
-    pre_input = ['식물', '화분', '사진', '오늘']
-    exceptwords = st.multiselect('제외할 키워드', pre_input, allow_input=True)
+    exceptwords = st.multiselect('제외할 키워드',['식물', '화분', '사진', '오늘'], allow_input=True)
+
     # if stopwords:
     #     stopwords = [x.strip() for x in ','.join(stopwords).split(',')]
 
