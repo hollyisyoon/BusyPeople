@@ -76,17 +76,17 @@ col1, col2, col3 = st.beta_columns(3)
 with col1:
     type = st.selectbox('기준',('단순 빈도(Countvertize)', '상대 빈도(TF-IDF)'))
 with col2:
-    st.write(keyword_no, '개의 키워드 선택')   
+    medai = st.selectbox('매체',('식물갤러리'))
 with col3:
-    st.write('식물갤러리')   
+
 
 # Get top words
 start_date = pd.Timestamp(start_date)
 end_date = pd.Timestamp(end_date)
 if type == '단순 빈도(Countvertize)' :
-    words = get_count_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
+    words = get_count_top_words(df, start_date, end_date, keyword_no, media)
 else :
-    words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
+    words = get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
 
 # Create word cloud
 wc = WordCloud(background_color="white", 
