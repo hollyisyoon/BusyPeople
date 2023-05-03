@@ -116,7 +116,7 @@ dit_
 
 with elements("dashboard"):
 
-    with dashboard():
+    with dashboard.Grid():
         st.markdown(html, unsafe_allow_html=True)
     # You can create a draggable and resizable dashboard using
     # any element available in Streamlit Elements.
