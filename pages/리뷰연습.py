@@ -102,4 +102,8 @@ fig
 
 url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:showVizHome=no&:embed=true"
 html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
-st.markdown(html, unsafe_allow_html=True, use_container_width=True)
+st.markdown(html, unsafe_allow_html=True)
+
+url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
+html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
+st.markdown(html, unsafe_allow_html=True)
