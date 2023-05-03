@@ -118,7 +118,7 @@ with st.container():
         <title>대시보드</title>
     </head>
     <body>
-        <iframe src={url}></iframe>
+        <iframe src={url} width=device-width></iframe>
     </body>
     </html>
     '''
