@@ -6,7 +6,7 @@ from wordcloud import WordCloud
 
 import streamlit as st
 
-df = pd.read_csv('https://github.com/seoinhyeok96/BusyPeople-stramlit/blob/main/data/%EC%96%B4%EA%B0%84.csv')
+df = pd.read_csv('/app/busypeople-stramlit//data/어간.csv')
 
 df.columns = ['index','count']
 
