@@ -81,53 +81,24 @@ if type == '단순 빈도(Countvertize)' :
 else :
     words = get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
 
-# 색 구분
-def create_colorscale(color_list):
-    """
-    구간별 색 구분
-    """
-    n = len(color_list)
-    scale = []
-    for i in range(n):
-        if i == 0:
-            scale.append([0, color_list[i]])
-        elif i == n - 1:
-            scale.append([1, color_list[i]])
-        else:
-            scale.append([(i / (n - 1)), color_list[i]])
-    return scale
-
-wc = WordCloud(background_color="white", colormap='Spectral', font_path='/app/busypeople-stramlit/font/NanumBarunGothic.ttf')
-wc.generate_from_frequencies(words)
-
-colors = wc.to_array()
-colors = colors / 255.0
-colors = colors.reshape(-1, 4)
-colors = np.apply_along_axis(lambda x: to_rgba(x), 1, colors)
-num_intervals = 5
-cscale = []
-for i in range(num_intervals):
-    start = i / num_intervals
-    end = (i + 1) / num_intervals
-    interval_color = np.mean(colors[(colors[:, 2] >= start) & (colors[:, 2] < end)], axis=0)
-    cscale.append([i / (num_intervals - 1), 'rgb' + str(tuple(interval_color[:3] * 255))])
-
-fig = go.Figure(go.Image(z=colors))
-fig.update_layout(
-    width=700,
-    height=700,
-    xaxis=dict(showticklabels=False, showgrid=False, zeroline=False),
-    yaxis=dict(showticklabels=False, showgrid=False, zeroline=False),
-    margin=dict(l=0, r=0, t=0, b=0),
-    coloraxis=dict(
-        showscale=False,
-        colorscale=create_colorscale(cscale),
-        colorbar=dict(tickvals=np.linspace(0, 1, num_intervals), ticktext=[f'{i + 1}구간' for i in range(num_intervals)])
+# 워드클라우드
+import plotly.graph_objects as go
+fig = go.Figure(go.Scatter(x=[0], y=[0], mode="text"))
+for i, (word, freq) in enumerate(words_dict.items()):
+    fig.add_annotation(
+        x=0, y=0, text=word,
+        font=dict(size=freq*100, color=plotly.colors.DEFAULT_PLOTLY_COLORS[i%len(plotly.colors.DEFAULT_PLOTLY_COLORS)]),
+        xanchor="center", yanchor="middle"
     )
+fig.update_layout(
+    plot_bgcolor='white',
+    margin=dict(l=0, r=0, t=0, b=0),
+    xaxis=dict(showgrid=False, showticklabels=False, zeroline=False),
+    yaxis=dict(showgrid=False, showticklabels=False, zeroline=False),
 )
 st.plotly_chart(fig)
 
-
+# 바그래프
 words_count = Counter(words)
 words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
