@@ -49,7 +49,7 @@ pie_chart = px.pie(df_파이차트, values=values, names=names)
 # 워드클라우드
 cand_mask = np.array(Image.open('/app/busypeople-stramlit/data/circle.png'))
 워드클라우드 = WordCloud(background_color="white", 
-                max_words=1000,font_path = "NanumGothic", 
+                max_words=1000,font_path = "/app/busypeople-stramlit/font/NanumBarunGothic.ttf", 
                 contour_width=3, 
                 colormap='Spectral', 
                 contour_color='white',
