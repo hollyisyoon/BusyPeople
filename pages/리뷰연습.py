@@ -5,6 +5,7 @@ import koreanize_matplotlib
 from wordcloud import WordCloud
 
 import streamlit as st
+from streamlit_elements import elements, mui, html
 
 df = pd.read_csv('/app/busypeople-stramlit/data/어간.csv')
 
@@ -103,7 +104,7 @@ fig
 with st.container():
     col1 = st.columns(1)
 
-with col1:
+with elements():
     url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:showVizHome=no&:embed=true"
     html = f'''
         <iframe src={url} width=1600 height=900></iframe>
