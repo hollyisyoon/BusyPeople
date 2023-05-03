@@ -107,10 +107,20 @@ with st.container():
 
 with st.container():
     url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
-    html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
+    html = '''
+
+
+    <iframe src=' + url + ' width=1000 height=800></iframe>
+    
+    '''
     st.markdown(html, unsafe_allow_html=True)
 
+
+
 with st.container():
-    url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
-    html = '<iframe src=' + url + '></iframe>'
-    st.markdown(html, unsafe_allow_html=True)
+    col1 = st.columns([1])
+    with col1:
+        url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
+        html = '<iframe src=' + url + '></iframe>'
+        st.markdown(html, unsafe_allow_html=True)
+
