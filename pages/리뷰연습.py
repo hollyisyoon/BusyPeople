@@ -101,9 +101,6 @@ fig.update_layout(xaxis=dict(domain=[0, 0.45]), yaxis=dict(domain=[0, 1]),
 fig
 
 with st.container():
-    col1 = st.columns(1)
-
-with col1:
     url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:showVizHome=no&:embed=true"
     html = f'''
         <iframe src={url} width=1600 height=900></iframe>
