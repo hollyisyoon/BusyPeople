@@ -102,12 +102,10 @@ if type == '단순 빈도(Countvertize)' :
     words = get_count_top_words(df, start_date, end_date, keyword_no, media)
 else :
     words = get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
-time_keyword = time_series(df, start_date, end_date, media, search_word)
 
 #워드클라우드
 wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue', font_path="/app/busypeople-stramlit/font/NanumBarunGothic.ttf")
 wc.generate_from_frequencies(words)
-
 
 ###########동적 워드 클라우드####################
 # 컬러 팔레트 생성
@@ -149,6 +147,7 @@ words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
 
 ###시계열 그래프###
+time_keyword = time_series(df, start_date, end_date, media, search_word)
 fig = px.line(time_keyword, x=time_keyword.index, y=word, labels={
         'date': 'Date',
         word: 'Count'
