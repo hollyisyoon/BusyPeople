@@ -76,7 +76,7 @@ col1, col2, col3 = st.beta_columns(3)
 with col1:
     type = st.selectbox('기준',('단순 빈도(Countvertize)', '상대 빈도(TF-IDF)'))
 with col2:
-    medai = st.selectbox('매체',('식물갤러리'))
+    media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
     st.write(' ')
 
