@@ -115,7 +115,7 @@ col1, col2, col3 = st.beta_columns(3)
 with col1:
     type = st.selectbox('기준',['자사', '경쟁사'])
 with col2:
-    pos_neg = st.radio('매체',['긍정', '부정'])
+    pos_neg = st.radio('매체',['긍정', '부정'],horizontal=True)
 with col3:
     input_str = st.text_input('제거할 키워드')
     stopwords = stop_words.extend([x.strip() for x in input_str.split(',')])
