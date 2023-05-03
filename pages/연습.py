@@ -34,7 +34,7 @@ def time_series(df, start_date, end_date, media, search_word):
     count = count_vectorizer.fit_transform(df['title+content'].values)
     count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
 
-    count_df['date'] = pd.to_datetime(df['time']).dt.date
+    count_df['date'] = pd.to_datetime(df['time']).date()
     count_df = count_df[['date', search_word]]
     top_words = count_df.iloc[:, 1:].sum().sort_values(ascending=False).head(100).index
     top_words = [search_word]
@@ -64,9 +64,12 @@ end_date = pd.Timestamp(end_date)
 time_series(df, start_date, end_date, media, search_word)
 
 time_keyword = time_series(df, start_date, end_date, media, search_word)
-fig = px.line(time_keyword, x=time_keyword.index, y=word, labels={
-        'date': 'Date',
-        word: 'Count'
-    }, title='Count by Date')
-fig.update_xaxes(tickangle=45)
-fig.show()
+for col in time_keyword.columns:
+        plt.plot(time_keyword.index, time_keyword[col], label=col)
+        
+plt.legend()
+plt.title('Top Words Count by Date')
+plt.xlabel('Date')
+plt.ylabel('Count')
+plt.xticks(rotation=45)
+plt.show()
