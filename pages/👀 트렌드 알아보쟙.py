@@ -37,6 +37,7 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
     tfidf_df = pd.DataFrame(tfidf.todense(), columns=tfidf_vectorizer.get_feature_names_out())
     tfidf_top_words = tfidf_df.sum().sort_values(ascending=False).head(num_words).to_dict()
+    tfidf_top_words = dict(tfidf_top_words)
     return tfidf_top_words
 
 def get_count_top_words(df, start_date, last_date, num_words, media):
@@ -68,7 +69,7 @@ with col3:
 
 col1, col2, col3 = st.beta_columns(3)    
 with col1:
-    type = st.selectbox('기준',('단순 빈도(Countvertize)', '상대 빈도(TF-IDF)'))
+    type = st.selectbox('기준',('상대 빈도(TF-IDF)','단순 빈도(Countvertize)'))
 with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
@@ -88,23 +89,23 @@ st.write(type(words))
 
 
 #워드클라우드
-# wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue')
-# wc.generate_from_frequencies(words)
-# words_dict = dict(wc.words_)
+wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue')
+wc.generate_from_frequencies(words)
+words_dict = dict(wc.words_)
 
-# # Wordcloud를 위한 데이터 프레임 생성
-# df = {'text': list(words_dict.keys()), 'size': list(words_dict.values())}
-# df = pd.DataFrame(df)
+# Wordcloud를 위한 데이터 프레임 생성
+df = {'text': list(words_dict.keys()), 'size': list(words_dict.values())}
+df = pd.DataFrame(df)
 
-# # 컬러 팔레트 생성
-# palette = np.random.choice(['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
-#                             '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'], 10, replace=False)
+# 컬러 팔레트 생성
+palette = np.random.choice(['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
+                            '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'], 10, replace=False)
 
-# # WordCloud 시각화를 위한 Scatter Plot 생성
-# fig = go.Figure(go.Scatter(x=[0], y=[0], mode="text", text=df['text'], textfont=dict(size=df['size'], color=palette)))
-# fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-#                   yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
-# st.plotly_chart(fig)
+# WordCloud 시각화를 위한 Scatter Plot 생성
+fig = go.Figure(go.Scatter(x=[0], y=[0], mode="text", text=df['text'], textfont=dict(size=df['size'], color=palette)))
+fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                  yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
+st.plotly_chart(fig)
 
 # # 바그래프
 # words_count = Counter(words)
