@@ -8,7 +8,7 @@ import streamlit as st
 
 import os
 
-df = pd.read_csv('/app/busypeople/data/%EC%96%B4%EA%B0%84.csv')
+df = pd.read_csv('/app/busypeople/data/어간.csv')
 
 df.columns = ['index','count']
 
