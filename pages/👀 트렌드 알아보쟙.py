@@ -162,8 +162,7 @@ fig = px.line(df_daily_views, x='time', y='view')
 st.plotly_chart(fig, use_container_width=True)
 
 #### 연관검색어 #####
-st.button('분석하기')
-if st.button('분석하기'):
+if st.button('분석을 시작하기'):
     with st.spinner('분석 중입니다...'):
         # Define the data
         data = get_words(df,'title+content', search_word)
@@ -197,3 +196,4 @@ if st.button('분석하기'):
         expander = st.expander('분석 결과 데이터 보기')
         with expander:
             show_modal(df_data)
+
