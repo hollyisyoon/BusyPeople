@@ -1,5 +1,6 @@
 import streamlit as st
 import plotly.express as px
+import plotly.graph_objects as go
 
 from collections import Counter
 
@@ -44,7 +45,9 @@ words = get_count_top_words(df_리뷰_감성분석결과)
 df_파이차트 = pd.DataFrame(df_리뷰_감성분석결과['감성결과'].value_counts())
 values = 'count'
 names = list(df_파이차트.index)
-pie_chart = px.pie(df_파이차트, values=values, names=names)
+
+pie_chart = go.Figure(data=[go.Pie(labels=list(df_파이차트.index), values=df_파이차트['count'])])
+# pie_chart = px.pie(df_파이차트, values=values, names=names)
 ########################################################################################################################
 # 워드클라우드
 cand_mask = np.array(Image.open('/app/busypeople-stramlit/data/circle.png'))
@@ -67,7 +70,6 @@ cand_mask = np.array(Image.open('/app/busypeople-stramlit/data/circle.png'))
 col1, col2, col3 = st.columns([1,1,1])
 ########################################################################################################################
 with col1:
-   fig, ax = plt.subplots()
    st.plotly_chart(pie_chart, use_container_width=True)
 
 with col2:
