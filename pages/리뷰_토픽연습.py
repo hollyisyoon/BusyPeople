@@ -5,7 +5,6 @@ import gensim
 from matplotlib import pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.colors as mcolors
-from PIL import Image
 
 stop_words = [ '합니다', '하는', '할', '하고', '한다', 
              '그리고', '입니다', '그', '등', '이런', '및','제', '더','언늘','결국','생각','식물키',
@@ -107,7 +106,7 @@ def get_topic_model(data, num_topics=4, passes=10, num_words=10):
 ############streamlit 구현 ##################
 st.title('리뷰_토픽모델링')
 
-col1, col2 = st.beta_columns(2)
+# col1, col2 = st.beta_columns(2)
 
 
 
