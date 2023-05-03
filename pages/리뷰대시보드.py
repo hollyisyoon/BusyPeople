@@ -68,12 +68,91 @@ with col2:
     ax.imshow(워드클라우드, interpolation='bilinear')
     st.pyplot(fig, use_container_width=True)
 ########################################################################################################################
+# 바차트
 with col3:
     st.bar_chart(words)
 ########################################################################################################################
+# 바차트
 with col5:
     st.bar_chart(words)
 ########################################################################################################################
+# 네트워크 차트
+from gensim.models import Word2Vec
+import networkx as nx
+from pyvis.network import Network
+
+keywords = ['제라늄']
+
+reviews = [eval(i) for i in df['kha_nng_은어전처리_sentence']]
+
+networks = []
+for review in reviews:
+    network_review = [w for w in review if len(w) > 1]
+    networks.append(network_review)
+
+model = Word2Vec(networks, vector_size=100, window=5, min_count=1, workers=4, epochs=100)
+
+G = nx.Graph(font_path='/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf')
+
+# 중심 노드들을 노드로 추가
+for keyword in keywords:
+    G.add_node(keyword)
+    # 주어진 키워드와 가장 유사한 20개의 단어 추출
+    similar_words = model.wv.most_similar(keyword, topn=20)
+    # 유사한 단어들을 노드로 추가하고, 주어진 키워드와의 연결선 추가
+    for word, score in similar_words:
+        G.add_node(word)
+        G.add_edge(keyword, word, weight=score)
+        
+# 노드 크기 결정
+size_dict = nx.degree_centrality(G)
+
+# 노드 크기 설정
+node_size = []
+for node in G.nodes():
+    if node in keywords:
+        node_size.append(5000)
+    else:
+        node_size.append(1000)
+
+# 클러스터링
+clusters = list(nx.algorithms.community.greedy_modularity_communities(G))
+cluster_labels = {}
+for i, cluster in enumerate(clusters):
+    for node in cluster:
+        cluster_labels[node] = i
+        
+# 노드 색상 결정
+color_palette = ["#f39c9c", "#f7b977", "#fff4c4", "#d8f4b9", "#9ed6b5", "#9ce8f4", "#a1a4f4", "#e4b8f9", "#f4a2e6", "#c2c2c2"]
+node_colors = [color_palette[cluster_labels[node] % len(color_palette)] for node in G.nodes()]
+
+# 노드에 라벨과 연결 강도 값 추가
+edge_weights = [d['weight'] for u, v, d in G.edges(data=True)]
+
+# 선의 길이를 변경 pos
+plt.figure(figsize=(15,15))
+pos = nx.spring_layout(G, seed=42, k=0.15)
+nx.draw(G, pos, font_family='NanumGothic', with_labels=True, node_size=node_size, node_color=node_colors, alpha=0.8, linewidths=1,
+        font_size=9, font_color="black", font_weight="medium", edge_color="grey", width=edge_weights)
+
+
+# 중심 노드들끼리 겹치는 단어 출력
+overlapping_keywords = set()
+for i, keyword1 in enumerate(keywords):
+    for j, keyword2 in enumerate(keywords):
+        if i < j and keyword1 in G and keyword2 in G:
+            if nx.has_path(G, keyword1, keyword2):
+                overlapping_keywords.add(keyword1)
+                overlapping_keywords.add(keyword2)
+if overlapping_keywords:
+    print(f"다음 중심 키워드들끼리 연관성이 있어 중복될 가능성이 있습니다: {', '.join(overlapping_keywords)}")
+
+
+net = Network(notebook=True, cdn_resources='in_line')
+
+net.from_nx(G)
+
+net.show('안녕.html')
 ########################################################################################################################
 ########################################################################################################################
 ########################################################################################################################
