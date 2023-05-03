@@ -34,7 +34,7 @@ df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main
 df['time'] = pd.to_datetime(df['time'])
 df['name'] = df['name'].astype(str)
 
-stop_words=['식물', '화분']
+stopwords=['식물', '화분']
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
