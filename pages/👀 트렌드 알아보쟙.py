@@ -86,7 +86,7 @@ else :
     words = get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
 
 #워드클라우드
-wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue')
+wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue', font_path="/app/busypeople-stramlit/font/NanumBarunGothic.ttf")
 wc.generate_from_frequencies(words)
 
 
