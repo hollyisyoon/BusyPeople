@@ -62,3 +62,11 @@ media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 start_date = pd.Timestamp(start_date)
 end_date = pd.Timestamp(end_date)
 time_series(df, start_date, end_date, media, search_word)
+
+time_keyword = time_series(df, start_date, end_date, media, search_word)
+fig = px.line(time_keyword, x=time_keyword.index, y=word, labels={
+        'date': 'Date',
+        word: 'Count'
+    }, title='Count by Date')
+fig.update_xaxes(tickangle=45)
+fig.show()
