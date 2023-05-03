@@ -39,10 +39,7 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     start_date = pd.to_datetime(start_date)
     last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
-    if stopwords is None :
-        tfidf_vectorizer = TfidfVectorizer()
-    else:
-        tfidf_vectorizer = TfidfVectorizer(stop_words = stopwords)
+    tfidf_vectorizer = TfidfVectorizer(stop_words = stopwords)
     tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
     tfidf_df = pd.DataFrame(tfidf.todense(), columns=tfidf_vectorizer.get_feature_names_out())
     tfidf_top_words = tfidf_df.sum().sort_values(ascending=False).head(num_words).to_dict()
@@ -81,8 +78,11 @@ with col1:
 with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
-    input_str = st.text_input('Enter hashtags separated by commas')
-    stopwords = [x.strip() for x in input_str.split(',')]
+    pre_input = ['식물', '화분', '사진', '오늘']
+    stopwords = st.multiselect('제외할 키워드', pre_input, allow_input=True)
+
+    # input_str = st.text_input('Enter hashtags separated by commas')
+    # stopwords = [x.strip() for x in input_str.split(',')]
 
 # Get top words
 start_date = pd.Timestamp(start_date)
