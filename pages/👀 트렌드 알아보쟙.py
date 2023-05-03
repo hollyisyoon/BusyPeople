@@ -28,6 +28,7 @@ rain(emoji="🦝",
 #     except (ValueError, SyntaxError):
 #         return []
 
+#데이터 불러오기
 df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv', encoding='utf8')
 # df['title+content'] = df['title+content'].map(to_list)
 df['time'] = pd.to_datetime(df['time'])
@@ -43,6 +44,14 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     tfidf_df = pd.DataFrame(tfidf.todense(), columns=tfidf_vectorizer.get_feature_names_out())
     tfidf_top_words = tfidf_df.sum().sort_values(ascending=False).head(num_words).to_dict()
     return tfidf_top_words
+
+def get_count_top_words(df, start_date, last_date, num_words, media):
+    df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
+    count_vectorizer = CountVectorizer()
+    count = count_vectorizer.fit_transform(df['title+content'].values)
+    count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
+    count_top_words = count_df.sum().sort_values(ascending=False).head(num_words).to_dict()
+    return count_top_words
 
 st.title('외부 트렌드 모니터링 대시보드')
 #인풋
@@ -74,7 +83,7 @@ end_date = pd.Timestamp(end_date)
 # Get top words
 # start_date = pd.to_datetime(start_date)
 # end_date = pd.to_datetime(end_date)
-df = df[(df['name'] == '식물갤러리') & (df['time'] >= start_date) & (df['time'] <= end_date)]
+# df = df[(df['name'] == '식물갤러리') & (df['time'] >= start_date) & (df['time'] <= end_date)]
 words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
 
 # Create word cloud
