@@ -16,3 +16,4 @@ gensim
 streamlit-modal
 streamlit-extras
 psutil
+streamlit-elements
