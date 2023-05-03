@@ -78,7 +78,7 @@ with col1:
 with col2:
     medai = st.selectbox('매체',('식물갤러리'))
 with col3:
-
+    st.write(' ')
 
 # Get top words
 start_date = pd.Timestamp(start_date)
