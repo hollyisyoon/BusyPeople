@@ -68,7 +68,6 @@ def topic_wordcloud(model):
     plt.axis('off')
     plt.margins(x=0, y=0)
     plt.tight_layout()
-    ax.imshow(interpolation='bilinear')
     st.pyplot(fig, use_container_width=True)
 
 
