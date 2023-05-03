@@ -19,4 +19,4 @@ file_list = os.listdir(path)
 
 file_list
 
-os.remove('NanumBarunGothic (5).ttf', option)
+os.remove('NanumBarunGothic (5).ttf')
