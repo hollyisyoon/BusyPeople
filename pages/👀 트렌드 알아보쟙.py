@@ -56,13 +56,9 @@ def keyword_timeseries(df, start_date, end_date, media, keyword):
     df['time'] = pd.to_datetime(df['time'])
     mask = (df['time'] >= start_date) & (df['time'] <= end_date)
     df = df.loc[mask]
-
-    # 일별 view수의 평균
     df_daily_views = df.groupby(df['time'].dt.date)['view'].sum().reset_index()
-
-    # plot 그리기
-    fig = px.line(df_daily_views, x='time', y='view')
-    fig.show()
+    return df_daily_views
+    
 
 #### 대시보드 시작 #####
 st.title('외부 트렌드 모니터링 대시보드')
@@ -145,4 +141,6 @@ words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
 
 ###시계열 그래프###
-keyword_timeseries(df, start_date, end_date, media, search_word)
+df_daily_views = keyword_timeseries(df, start_date, end_date, media, search_word)
+fig = px.line(df_daily_views, x='time', y='view')
+fig.show()
