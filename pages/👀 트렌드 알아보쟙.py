@@ -71,7 +71,7 @@ with col3:
     input_str = st.text_input('제거할 키워드')
     stopwords = [x.strip() for x in input_str.split(',')]
 
-# Get top words
+# 타입 옵션
 start_date = pd.Timestamp(start_date)
 end_date = pd.Timestamp(end_date)
 if type == '단순 빈도(Countvertize)' :
@@ -79,33 +79,53 @@ if type == '단순 빈도(Countvertize)' :
 else :
     words = get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
 
-# Create word cloud
-wc = WordCloud(background_color="white", 
-               colormap='Spectral', 
-               contour_color='steelblue',
-               font_path='/app/busypeople-stramlit/font/NanumBarunGothic.ttf')
+# 색 구분
+def create_colorscale(color_list):
+    """
+    구간별 색 구분
+    """
+    n = len(color_list)
+    scale = []
+    for i in range(n):
+        if i == 0:
+            scale.append([0, color_list[i]])
+        elif i == n - 1:
+            scale.append([1, color_list[i]])
+        else:
+            scale.append([(i / (n - 1)), color_list[i]])
+    return scale
+
+wc = WordCloud(background_color="white", colormap='Spectral', font_path='/app/busypeople-stramlit/font/NanumBarunGothic.ttf')
 wc.generate_from_frequencies(words)
-words_dict = dict(wc.words_)
 
-# Create list of dictionaries with word and size fields
-word_list = [{'text': word, 'size': size} for word, size in words_dict.items()]
+colors = wc.to_array()
+colors = colors / 255.0
+colors = colors.reshape(-1, 4)
+colors = np.apply_along_axis(lambda x: to_rgba(x), 1, colors)
+num_intervals = 5
+cscale = []
+for i in range(num_intervals):
+    start = i / num_intervals
+    end = (i + 1) / num_intervals
+    interval_color = np.mean(colors[(colors[:, 2] >= start) & (colors[:, 2] < end)], axis=0)
+    cscale.append([i / (num_intervals - 1), 'rgb' + str(tuple(interval_color[:3] * 255))])
 
-# Create trace for WordCloud
-wordcloud = go.Scatter(x=[0], y=[0], mode="text", text=[word['text'] for word in word_list],
-                       hoverinfo='text', textfont=dict(size=[word['size'] for word in word_list],
-                                                       color=[plotly.colors.DEFAULT_PLOTLY_COLORS[i] 
-                                                              for i in range(len(word_list))]))
-
-# Create layout for plot
-layout = go.Layout(
-    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-    hovermode='closest'
+fig = go.Figure(go.Image(z=colors))
+fig.update_layout(
+    width=700,
+    height=700,
+    xaxis=dict(showticklabels=False, showgrid=False, zeroline=False),
+    yaxis=dict(showticklabels=False, showgrid=False, zeroline=False),
+    margin=dict(l=0, r=0, t=0, b=0),
+    coloraxis=dict(
+        showscale=False,
+        colorscale=create_colorscale(cscale),
+        colorbar=dict(tickvals=np.linspace(0, 1, num_intervals), ticktext=[f'{i + 1}구간' for i in range(num_intervals)])
+    )
 )
-
-# Create figure
-fig = go.Figure(data=[wordcloud], layout=layout)
-fig.update_layout(title="WordCloud")
-
-# Show plot
 st.plotly_chart(fig)
+
+
+words_count = Counter(words)
+words_df = pd.DataFrame([words_count]).T
+st.bar_chart(words_df)
