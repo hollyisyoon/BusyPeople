@@ -72,7 +72,7 @@ with col2:
 with col3:
     input_str = st.text_input('제거할 키워드')
     stopwords = [x.strip() for x in input_str.split(',')]
-    st.write(type(words))
+
 
 # 타입 옵션
 start_date = pd.Timestamp(start_date)
@@ -81,6 +81,9 @@ if type == '단순 빈도(Countvertize)' :
     words = get_count_top_words(df, start_date, end_date, keyword_no, media)
 else :
     words = get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
+
+st.write(type(words))
+
 
 #워드클라우드
 # wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue')
