@@ -34,7 +34,7 @@ df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main
 df['time'] = pd.to_datetime(df['time'])
 df['name'] = df['name'].astype(str)
 
-stopwords = ['식물', '진짜']
+stopwords = ['식물', '진짜', '화분']
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
@@ -52,7 +52,7 @@ def get_count_top_words(df, start_date, last_date, num_words, media):
     start_date = pd.to_datetime(start_date)
     last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
-    count_vectorizer = CountVectorizer()
+    count_vectorizer = CountVectorizer(stop_words = stopwords)
     count = count_vectorizer.fit_transform(df['title+content'].values)
     count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
     count_top_words = count_df.sum().sort_values(ascending=False).head(num_words).to_dict()
