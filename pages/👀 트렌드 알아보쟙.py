@@ -46,6 +46,9 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     return tfidf_top_words
 
 def get_count_top_words(df, start_date, last_date, num_words, media):
+    df = df[df['name'] == media]
+    start_date = pd.to_datetime(start_date)
+    last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     count_vectorizer = CountVectorizer()
     count = count_vectorizer.fit_transform(df['title+content'].values)
@@ -83,7 +86,7 @@ end_date = pd.Timestamp(end_date)
 if type == '단순 빈도(Countvertize)' :
     words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
 else :
-    print('hello')
+    words = get_count_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
 
 # Create word cloud
 wc = WordCloud(background_color="white", 
@@ -99,7 +102,7 @@ st.pyplot(fig1)
 
 # Create bar graph
 words_count = Counter(words)
-words_df = pd.DataFrame([words_count]).T
+words_df = pd.DataFrame([words_count])
 # words_df = words_df.sort_values('count', ascending=False, inplace=True)
 
 # fig2, ax2 = plt.subplots(figsize=(10, 4))
