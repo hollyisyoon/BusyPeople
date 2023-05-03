@@ -34,8 +34,6 @@ df['name'] = df['name'].astype(str)
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
-    # start_date = pd.to_datetime(start_date)
-    # last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     tfidf_vectorizer = TfidfVectorizer(stop_words=stopwords)
     tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
@@ -46,8 +44,6 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, media):
 
 def get_count_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
-    # start_date = pd.to_datetime(start_date)
-    # last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     count_vectorizer = CountVectorizer(stop_words=stopwords)
     count = count_vectorizer.fit_transform(df['title+content'].values)
@@ -55,7 +51,7 @@ def get_count_top_words(df, start_date, last_date, num_words, media):
     count_top_words = count_df.sum().sort_values(ascending=False).head(num_words).to_dict()
     return count_top_words
 
-def get_count_top_words_modified(df, start_date, end_date, media, search_word):
+def time_series(df, start_date, end_date, media, search_word):
     df = df[df['name'] == media]
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     # countvectorizer
@@ -63,7 +59,7 @@ def get_count_top_words_modified(df, start_date, end_date, media, search_word):
     count = count_vectorizer.fit_transform(df['title+content'].values)
     count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
 
-    count_df['date'] = pd.to_datetime(df['time']).dt.date
+    count_df['date'] = pd.to_datetime(df['time']).date()
     count_df = count_df[['date', search_word]]
     top_words = count_df.iloc[:, 1:].sum().sort_values(ascending=False).head(100).index
     top_words = [search_word]
@@ -97,6 +93,7 @@ with col3:
     input_str = st.text_input('제거할 키워드')
     stopwords = [x.strip() for x in input_str.split(',')]
 
+search_word = st.text_input('어떤 키워드의 트렌드를 볼까요?', value='제라늄')
 
 # 타입 옵션
 start_date = pd.Timestamp(start_date)
@@ -105,6 +102,7 @@ if type == '단순 빈도(Countvertize)' :
     words = get_count_top_words(df, start_date, end_date, keyword_no, media)
 else :
     words = get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
+time_keyword = time_series(df, start_date, end_date, media, search_word)
 
 #워드클라우드
 wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue', font_path="/app/busypeople-stramlit/font/NanumBarunGothic.ttf")
@@ -151,8 +149,6 @@ words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
 
 ###시계열 그래프###
-search_word = st.text_input('어떤 키워드의 트렌드를 볼까요?')
-time_keyword = get_count_top_words_modified(df, start_date, end_date, media, search_word)
 fig = px.line(time_keyword, x=time_keyword.index, y=word, labels={
         'date': 'Date',
         word: 'Count'
