@@ -109,17 +109,17 @@ with st.container():
 
 import streamlit as st
 from streamlit_elements import elements, mui
-from streamlit_elements import dashboard
 
-dit_ = dir(dashboard)
-dit_
+dir_ = dir(mui)
+dir_
 
 with elements("dashboard"):
 
-    with dashboard.Grid():
-        st.markdown(html, unsafe_allow_html=True)
     # You can create a draggable and resizable dashboard using
     # any element available in Streamlit Elements.
+
+    from streamlit_elements import dashboard
+
     # First, build a default layout for every element you want to include in your dashboard
 
     layout = [
