@@ -130,7 +130,7 @@ with elements("dashboard"):
     # as first parameter, plus additional properties you can find in the GitHub links below.
 
     with dashboard.Grid(layout):
-        mui.Paper(st.markdown(html, unsafe_allow_html=True), key="first_item")
+        mui.Paper("First item", key="first_item")
         mui.Paper("Second item (cannot drag)", key="second_item")
         mui.Paper("Third item (cannot resize)", key="third_item")
 
