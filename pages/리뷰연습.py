@@ -145,9 +145,9 @@ with elements("dashboard"):
     # as first parameter, plus additional properties you can find in the GitHub links below.
 
     with dashboard.Grid(layout):
-        mui.Box("dfjkladf", key="first_item")
-        mui.Paper("Second item (cannot drag)", key="second_item")
-        mui.Paper("Third item (cannot resize)", key="third_item")
+        mui.Box("안녕하세요", key="first_item")
+        mui.Paper("적당히 바람이 시원해", key="second_item")
+        mui.Paper(" ", key="third_item")
 
     # If you want to retrieve updated layout values as the user move or resize dashboard items,
     # you can pass a callback to the onLayoutChange event parameter.
@@ -203,5 +203,5 @@ with elements("dashboard"):
                     }
                 }
             )
-        mui.Paper("Second item (cannot drag)", key="second_item")
-        mui.Paper("Third item (cannot resize)", key="third_item")
+        mui.Paper("화이팅", key="second_item")
+        mui.Paper("Third item", key="third_item")
