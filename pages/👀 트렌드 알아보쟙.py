@@ -93,12 +93,12 @@ wc.generate_from_frequencies(words)
 
 ###########동적 워드 클라우드####################
 # Wordcloud를 위한 데이터 프레임 생성
-words_dict = dict(wc.words_)
-df = pd.DataFrame({
-    'text': list(words_dict.keys()),
-    'size': list(words_dict.values()),
-    'color': np.random.choice(palette, len(words_dict))
-})
+# words_dict = dict(wc.words_)
+# df = pd.DataFrame({
+#     'text': list(words_dict.keys()),
+#     'size': list(words_dict.values()),
+#     'color': np.random.choice(palette, len(words_dict))
+# })
 
 # 컬러 팔레트 생성
 word_list=[]
@@ -116,13 +116,11 @@ for (word, freq), fontsize, position, orientation, color in wc.layout_:
     orientation_list.append(orientation)
     color_list.append(color)
 
-palette = color_list
-
 # WordCloud 시각화를 위한 Scatter Plot 생성
 fig = go.Figure(go.Scatter(
     x=[0], y=[0], mode="text",
-    text=df['text'],
-    textfont=dict(size=df['size'], color=df['color']),
+    text=word_list,
+    textfont=dict(size=fontsize_list, color=color_list),
 ))
 fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
                   yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
