@@ -14,7 +14,6 @@ stopwords = [ '합니다', '하는', '할', '하고', '한다',
              '그리고', '입니다', '그', '등', '이런', '및','제', '더','언늘','결국','생각','식물키',
              '감사','ㅋㅋ','진짜','완전','요ㅎ','사용','정도','엄마','아이','원래','식물']
 
-
 def to_list(text):
     return ast.literal_eval(text)
 
@@ -110,6 +109,12 @@ def get_topic_model(data, num_topics=4, passes=10, num_words=10):
 
 ##############################
 st.title('리뷰_토픽모델링')
+
+option = st.selectbox('Please select in selectbox!',
+                       ('자사(긍정리뷰)', '자사(부정리뷰)', '경쟁사(긍정리뷰)','경쟁사(부정리뷰)'))
+	
+  st.write('You selected:', option)
+
 
 get_topic_model(df)
 
