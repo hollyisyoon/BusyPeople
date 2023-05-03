@@ -110,11 +110,12 @@ with st.container():
 import streamlit as st
 from streamlit_elements import elements, mui
 
-dir_ = dir(mui)
-dir_
+
 
 with elements("dashboard"):
-
+    
+    dir_ = dir(mui)
+    dir_
     # You can create a draggable and resizable dashboard using
     # any element available in Streamlit Elements.
 
