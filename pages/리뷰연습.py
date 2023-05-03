@@ -105,7 +105,7 @@ with st.container():
     html = f'''
         <iframe src={url} width=1600 height=900></iframe>
     '''
-    st.markdown(html, unsafe_allow_html=True)
+    st.markdown(html, unsafe_allow_html=True, align_text='center')
 
 
 
