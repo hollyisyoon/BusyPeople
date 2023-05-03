@@ -91,20 +91,27 @@ wc.generate_from_frequencies(words)
 words_dict = dict(wc.words_)
 
 # Wordcloud를 위한 데이터 프레임 생성
-df = {'text': list(words_dict.keys()), 'size': list(words_dict.values())}
-df = pd.DataFrame(df)
+df = pd.DataFrame({
+    'text': list(words_dict.keys()),
+    'size': list(words_dict.values()),
+    'color': np.random.choice(palette, len(words_dict))
+})
 
 # 컬러 팔레트 생성
 palette = np.random.choice(['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
                             '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'], 50, replace=True)
 
 # WordCloud 시각화를 위한 Scatter Plot 생성
-fig = go.Figure(go.Scatter(x=[0], y=[0], mode="text", text=df['text'], textfont=dict(size=df['size'], color=palette)))
+fig = go.Figure(go.Scatter(
+    x=[0], y=[0], mode="text",
+    text=df['text'],
+    textfont=dict(size=df['size'], color=df['color']),
+))
 fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
                   yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
 st.plotly_chart(fig)
 
-# # 바그래프
-# words_count = Counter(words)
-# words_df = pd.DataFrame([words_count]).T
-# st.bar_chart(words_df)
+# 바그래프
+words_count = Counter(words)
+words_df = pd.DataFrame([words_count]).T
+st.bar_chart(words_df)
