@@ -119,7 +119,7 @@ for (word, freq), fontsize, position, orientation, color in wc.layout_:
 # WordCloud 시각화를 위한 Scatter Plot 생성
 fig = go.Figure(go.Scatter(
     x=[0], y=[0], mode="text",
-    text=word_list,
+    text=words,
     textfont=dict(size=fontsize_list, color=color_list),
 ))
 fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
