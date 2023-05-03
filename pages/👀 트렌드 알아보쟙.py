@@ -92,7 +92,7 @@ else :
 
 # Create word cloud
 wc = WordCloud(background_color="white", 
-               max_font_size=1000, 
+            #    max_font_size=1000, 
                colormap='Spectral', 
                contour_color='steelblue',
                font_path='/app/busypeople/font/NanumBarunGothic.ttf')
