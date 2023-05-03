@@ -8,7 +8,7 @@ import matplotlib.colors as mcolors
 
 
 #데이터 불러오기
-df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople-stramlit/main/data/자사긍정리뷰.csv', encoding='utf8')
+df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople-stramlit/main/data/자사긍정리뷰.csv', encoding='utf-8-sig')
 
 stopwords = [ '합니다', '하는', '할', '하고', '한다', 
              '그리고', '입니다', '그', '등', '이런', '및','제', '더','언늘','결국','생각','식물키',
