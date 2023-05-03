@@ -81,11 +81,6 @@ with col3:
     pre_input = ['식물', '화분', '사진', '오늘']
     options = pre_input + ["기타"]
     stopwords = st.multiselect("옵션을 선택하세요", options, default=["오늘"], allow_input=True)
-
-    # if stopwords:
-    #     stopwords = [x.strip() for x in ','.join(stopwords).split(',')]
-
-
     # input_str = st.text_input('Enter hashtags separated by commas')
     # stopwords = [x.strip() for x in input_str.split(',')]
 
