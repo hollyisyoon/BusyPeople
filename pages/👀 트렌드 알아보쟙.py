@@ -81,25 +81,27 @@ if type == '단순 빈도(Countvertize)' :
 else :
     words = get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
 
-wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue')
-wc.generate_from_frequencies(words)
-words_dict = dict(wc.words_)
+#워드클라우드
+st.write(type(words))
+# wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue')
+# wc.generate_from_frequencies(words)
+# words_dict = dict(wc.words_)
 
-# Wordcloud를 위한 데이터 프레임 생성
-df = {'text': list(words_dict.keys()), 'size': list(words_dict.values())}
-df = pd.DataFrame(df)
+# # Wordcloud를 위한 데이터 프레임 생성
+# df = {'text': list(words_dict.keys()), 'size': list(words_dict.values())}
+# df = pd.DataFrame(df)
 
-# 컬러 팔레트 생성
-palette = np.random.choice(['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
-                            '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'], 10, replace=False)
+# # 컬러 팔레트 생성
+# palette = np.random.choice(['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
+#                             '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'], 10, replace=False)
 
-# WordCloud 시각화를 위한 Scatter Plot 생성
-fig = go.Figure(go.Scatter(x=[0], y=[0], mode="text", text=df['text'], textfont=dict(size=df['size'], color=palette)))
-fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-                  yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
-st.plotly_chart(fig)
+# # WordCloud 시각화를 위한 Scatter Plot 생성
+# fig = go.Figure(go.Scatter(x=[0], y=[0], mode="text", text=df['text'], textfont=dict(size=df['size'], color=palette)))
+# fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+#                   yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
+# st.plotly_chart(fig)
 
-# 바그래프
-words_count = Counter(words)
-words_df = pd.DataFrame([words_count]).T
-st.bar_chart(words_df)
+# # 바그래프
+# words_count = Counter(words)
+# words_df = pd.DataFrame([words_count]).T
+# st.bar_chart(words_df)
