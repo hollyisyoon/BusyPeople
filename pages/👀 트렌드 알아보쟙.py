@@ -52,9 +52,11 @@ def get_count_top_words(df, start_date, last_date, num_words, media):
     count_top_words = count_df.sum().sort_values(ascending=False).head(num_words).to_dict()
     return count_top_words
 
-def get_count_top_words_modified(df, start_date, end_date, name, search_word):
-    df = df[(df['name'] == name) & (df['time'] >= start_date) & (df['time'] <= last_date)]
-
+def get_count_top_words_modified(df, start_date, end_date, media, search_word):
+    df = df[df['name'] == media]
+    start_date = pd.to_datetime(start_date)
+    last_date = pd.to_datetime(last_date)
+    df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     # countvectorizer
     count_vectorizer = CountVectorizer()
     count = count_vectorizer.fit_transform(df['title+content'].values)
