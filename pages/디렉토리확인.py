@@ -1,4 +1,5 @@
 import os
+import psutil
 
 path = os.getcwd()
 
@@ -8,6 +9,10 @@ file_list = os.listdir(path)
 
 file_list
 
-파일용량 = os.system(f"du -ks -h {path}")
+메모리 = psutil.virtual_memory()
 
-파일용량
+메모리
+
+사용가능한 = 메모리.available / 1024**3
+
+st.write(f'{사용가능한} GB')
