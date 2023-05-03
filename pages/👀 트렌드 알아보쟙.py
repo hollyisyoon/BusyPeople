@@ -16,10 +16,10 @@ import koreanize_matplotlib
 # plt.rcParams['axes.unicode_minus'] = False
 # plt.rc('font', family = 'NanumBarunGothic')
 
-# rain(emoji="🦝",
-#     font_size=54,
-#     falling_speed=10,
-#     animation_length="infinite")
+rain(emoji="🦝",
+    font_size=54,
+    falling_speed=10,
+    animation_length="infinite")
 
 #데이터 전처리
 # def to_list(text):
@@ -79,7 +79,7 @@ with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
     pre_input = ['식물', '화분', '사진', '오늘']
-    stopword = st.multiselect('제외할 키워드', pre_input, allow_input=True)
+    exceptwords = st.multiselect('제외할 키워드', pre_input, allow_input=True)
     # if stopwords:
     #     stopwords = [x.strip() for x in ','.join(stopwords).split(',')]
 
