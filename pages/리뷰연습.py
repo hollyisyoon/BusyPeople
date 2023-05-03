@@ -106,20 +106,20 @@ with st.container():
     st.markdown(html, unsafe_allow_html=True)
 
 
-with st.container():
-    url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
-    html = f'''
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>대시보드</title>
-    </head>
-    <body>
-        <iframe src={url} width=device-width></iframe>
-    </body>
-    </html>
-    '''
-    st.markdown(html, unsafe_allow_html=True)
+
+url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
+html = f'''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대시보드</title>
+</head>
+<body>
+    <iframe src={url} width=device-width></iframe>
+</body>
+</html>
+'''
+st.markdown(html, unsafe_allow_html=True)
