@@ -30,7 +30,6 @@ rain(emoji="🦝",
 #데이터 불러오기
 df = pd.read_csv('/app/busypeople-stramlit/data/plant_gallery.csv', encoding='utf8')
 df['time'] = pd.to_datetime(df['time'])
-# df['name'] = df['name'].astype(str)
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
@@ -50,21 +49,6 @@ def get_count_top_words(df, start_date, last_date, num_words, media):
     count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
     count_top_words = count_df.sum().sort_values(ascending=False).head(num_words).to_dict()
     return count_top_words
-
-def time_series(df, start_date, end_date, media, search_word):
-    df = df[df['name'] == media]
-    df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
-    # countvectorizer
-    count_vectorizer = CountVectorizer()
-    count = count_vectorizer.fit_transform(df['title+content'].values)
-    count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
-
-    count_df['date'] = pd.to_datetime(df['time']).date()
-    count_df = count_df[['date', search_word]]
-    top_words = count_df.iloc[:, 1:].sum().sort_values(ascending=False).head(100).index
-    top_words = [search_word]
-    time_top_words = count_df.groupby('date')[top_words].sum()
-    return time_top_words
 
 #### 대시보드 시작 #####
 st.title('외부 트렌드 모니터링 대시보드')
