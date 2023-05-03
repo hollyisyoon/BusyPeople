@@ -52,6 +52,21 @@ def get_count_top_words(df, start_date, last_date, num_words, media):
     count_top_words = count_df.sum().sort_values(ascending=False).head(num_words).to_dict()
     return count_top_words
 
+def get_count_top_words_modified(df, start_date, end_date, name, search_word):
+    df = df[(df['name'] == name) & (df['time'] >= start_date) & (df['time'] <= last_date)]
+
+    # countvectorizer
+    count_vectorizer = CountVectorizer()
+    count = count_vectorizer.fit_transform(df['title+content'].values)
+    count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
+
+    count_df['date'] = pd.to_datetime(df['time']).dt.date
+    count_df = count_df[['date', word]]
+    top_words = count_df.iloc[:, 1:].sum().sort_values(ascending=False).head(100).index
+    top_words = [word]
+    time_top_words = count_df.groupby('date')[top_words].sum()
+    return time_top_words
+
 st.title('외부 트렌드 모니터링 대시보드')
 #인풋
 col1, col2, col3 = st.beta_columns(3)
@@ -92,14 +107,6 @@ wc.generate_from_frequencies(words)
 
 
 ###########동적 워드 클라우드####################
-# Wordcloud를 위한 데이터 프레임 생성
-# words_dict = dict(wc.words_)
-# df = pd.DataFrame({
-#     'text': list(words_dict.keys()),
-#     'size': list(words_dict.values()),
-#     'color': np.random.choice(palette, len(words_dict))
-# })
-
 # 컬러 팔레트 생성
 word_list=[]
 freq_list=[]
@@ -133,40 +140,17 @@ fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, 
                   yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
 st.plotly_chart(fig, use_container_width=True)
 
-
-##########정적 워드 클라우드##########
-fig1, ax1 = plt.subplots()
-ax1.imshow(wc, interpolation='bilinear')
-ax1.axis("off")
-st.pyplot(fig1)
-
-
 # 바그래프
 words_count = Counter(words)
 words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
 
-
-###
+###시계열 그래프###
 search_word = st.text_input('어떤 키워드의 트렌드를 볼까요?')
-get_count_top_words_modified(df, start_date, end_date, media, '제라늄')
-def get_count_top_words_modified(df, start_date, end_date, name, search_word):
-    df = df[(df['name'] == name) & (df['time'] >= start_date) & (df['time'] <= last_date)]
-
-    # countvectorizer
-    count_vectorizer = CountVectorizer()
-    count = count_vectorizer.fit_transform(df['title+content'].values)
-    count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
-
-    count_df['date'] = pd.to_datetime(df['time']).dt.date
-    count_df = count_df[['date', word]]
-    top_words = count_df.iloc[:, 1:].sum().sort_values(ascending=False).head(100).index
-    top_words = [word]
-    top_words_count = count_df.groupby('date')[top_words].sum()
-    
-    fig = px.line(top_words_count, x=top_words_count.index, y=word, labels={
+time_keyword = get_count_top_words_modified(df, start_date, end_date, media, '제라늄')
+fig = px.line(time_keyword, x=time_keyword.index, y=word, labels={
         'date': 'Date',
         word: 'Count'
     }, title='Top Words Count by Date')
-    fig.update_xaxes(tickangle=45)
-    fig.show()
+fig.update_xaxes(tickangle=45)
+fig.show()
