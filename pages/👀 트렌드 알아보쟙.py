@@ -82,20 +82,25 @@ else :
     words = get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
 
 # 워드클라우드
-import plotly.graph_objects as go
-fig = go.Figure(go.Scatter(x=[0], y=[0], mode="text"))
-for i, (word, freq) in enumerate(words_dict.items()):
-    fig.add_annotation(
-        x=0, y=0, text=word,
-        font=dict(size=freq*100, color=plotly.colors.DEFAULT_PLOTLY_COLORS[i%len(plotly.colors.DEFAULT_PLOTLY_COLORS)]),
-        xanchor="center", yanchor="middle"
-    )
-fig.update_layout(
-    plot_bgcolor='white',
-    margin=dict(l=0, r=0, t=0, b=0),
-    xaxis=dict(showgrid=False, showticklabels=False, zeroline=False),
-    yaxis=dict(showgrid=False, showticklabels=False, zeroline=False),
+wc = WordCloud(background_color="white", 
+               colormap='Spectral', 
+               contour_color='steelblue',
+               font_path='/app/busypeople-stramlit/font/NanumBarunGothic.ttf')
+wc.generate_from_frequencies(words)
+words_dict = dict(wc.words_)
+word_list = [{'text': word, 'size': size} for word, size in words_dict.items()]
+wordcloud = go.Scatter(x=[0], y=[0], mode="text", text=[word['text'] for word in word_list],
+                       hoverinfo='text', textfont=dict(size=[word['size'] for word in word_list],
+                                                       color=[plotly.colors.DEFAULT_PLOTLY_COLORS[i] 
+                                                              for i in range(len(word_list))]))
+layout = go.Layout(
+    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+    hovermode='closest'
 )
+
+fig = go.Figure(data=[wordcloud], layout=layout)
+fig.update_layout(title="WordCloud")
 st.plotly_chart(fig)
 
 # 바그래프
