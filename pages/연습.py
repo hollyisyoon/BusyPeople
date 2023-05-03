@@ -28,7 +28,7 @@ df['name'] = df['name'].astype(str)
 
 def time_series(df, start_date, end_date, media, search_word):
     df = df[df['name'] == media]
-    df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
+    df = df[(df['time'] >= start_date) & (df['time'] <= end_date)]
     # countvectorizer
     count_vectorizer = CountVectorizer()
     count = count_vectorizer.fit_transform(df['title+content'].values)
