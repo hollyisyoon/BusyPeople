@@ -96,7 +96,7 @@ df = pd.DataFrame(df)
 
 # 컬러 팔레트 생성
 palette = np.random.choice(['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
-                            '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'], 10, replace=False)
+                            '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'], len(words_dict), replace=False)
 
 # WordCloud 시각화를 위한 Scatter Plot 생성
 fig = go.Figure(go.Scatter(x=[0], y=[0], mode="text", text=df['text'], textfont=dict(size=df['size'], color=palette)))
