@@ -108,7 +108,7 @@ with st.container():
     st.markdown(html, unsafe_allow_html=True)
 
 import streamlit as st
-from streamlit_elements import elements
+from streamlit_elements import elements, mui
 
 with elements("dashboard"):
 
