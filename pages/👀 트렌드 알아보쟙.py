@@ -84,9 +84,9 @@ with col3:
 start_date = pd.Timestamp(start_date)
 end_date = pd.Timestamp(end_date)
 if type == '단순 빈도(Countvertize)' :
-    words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
-else :
     words = get_count_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
+else :
+    words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
 
 # Create word cloud
 wc = WordCloud(background_color="white", 
