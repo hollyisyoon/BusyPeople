@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
+import plotly.graph_objects as go
 import ast
 import time
 
@@ -13,24 +14,13 @@ from wordcloud import WordCloud
 from datetime import datetime, timedelta
 import koreanize_matplotlib
 
-# plt.rcParams['axes.unicode_minus'] = False
-# plt.rc('font', family = 'NanumBarunGothic')
-
 rain(emoji="🦝",
     font_size=54,
     falling_speed=10,
     animation_length="infinite")
 
-#데이터 전처리
-# def to_list(text):
-#     try:
-#         return ast.literal_eval(text)
-#     except (ValueError, SyntaxError):
-#         return []
-
 #데이터 불러오기
-df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/plant_gallery.csv', encoding='utf8')
-# df['title+content'] = df['title+content'].map(to_list)
+df = pd.read_csv('/app/busypeople-stramlit/data/plant_gallery.csv', encoding='utf8')
 df['time'] = pd.to_datetime(df['time'])
 df['name'] = df['name'].astype(str)
 
@@ -78,7 +68,7 @@ with col1:
 with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
-    input_str = st.text_input('제거할 키워드를 ,로 구분해서 입력')
+    input_str = st.text_input('제거할 키워드')
     stopwords = [x.strip() for x in input_str.split(',')]
 
 # Get top words
@@ -91,29 +81,28 @@ else :
 
 # Create word cloud
 wc = WordCloud(background_color="white", 
-            #    max_font_size=1000, 
                colormap='Spectral', 
                contour_color='steelblue',
                font_path='/app/busypeople-stramlit/font/NanumBarunGothic.ttf')
 wc.generate_from_frequencies(words)
-fig1, ax1 = plt.subplots()
-ax1.imshow(wc, interpolation='bilinear')
-ax1.axis("off")
-st.pyplot(fig1)
+words_dict = wc.to_dict()
+wordcloud = go.Scatter(x=[0], y=[0], mode="text", text=list(words_dict.keys()),
+                       hoverinfo='text', textfont=dict(size=list(words_dict.values()),
+                                                       color=[plotly.colors.DEFAULT_PLOTLY_COLORS[i] 
+                                                              for i in range(len(words_dict))]))
+
+layout = go.Layout(
+    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+    hovermode='closest'
+)
+fig = go.Figure(data=[wordcloud], layout=layout)
+fig.update_layout(title="WordCloud")
+st.plotly_chart(fig)
 
 # Create bar graph
 words_count = Counter(words)
 words_df = pd.DataFrame([words_count]).T
-# words_df = words_df.sort_values('count', ascending=False, inplace=True)
-
-# fig2, ax2 = plt.subplots(figsize=(10, 4))
-# words_df.plot(kind='bar', ax=ax2)
-# ax2.set_title('Top Words')
-# ax2.set_xlabel('Words')
-# ax2.set_ylabel('Count')
-# ax2.tick_params(axis='x', labelrotation=45, labelsize=8)
-# label_size = st.slider('X-Axis Label Size', 1, 20, 8)
-# ax2.tick_params(axis='x', labelrotation=45, labelsize=label_size)
 st.bar_chart(words_df)
          
      
