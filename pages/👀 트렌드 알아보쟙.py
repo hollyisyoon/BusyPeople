@@ -142,4 +142,4 @@ st.bar_chart(words_df)
 ###시계열 그래프###
 df_daily_views = keyword_timeseries(df, start_date, end_date, media, search_word)
 fig = px.line(df_daily_views, x='time', y='view')
-fig.show()
+st.plotly_chart(fig, use_container_width=True)
