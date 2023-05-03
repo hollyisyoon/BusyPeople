@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 from matplotlib.colors import to_rgba
 import plotly.graph_objects as go
+import plotly.express as px
 import ast
 import time
 
@@ -125,3 +126,28 @@ st.pyplot(fig1)
 words_count = Counter(words)
 words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
+
+
+###
+search_word = st.text_input('어떤 키워드의 트렌드를 볼까요?')
+get_count_top_words_modified(df, start_date, end_date, media, '제라늄')
+def get_count_top_words_modified(df, start_date, end_date, name, search_word):
+    df = df[(df['name'] == name) & (df['time'] >= start_date) & (df['time'] <= last_date)]
+
+    # countvectorizer
+    count_vectorizer = CountVectorizer()
+    count = count_vectorizer.fit_transform(df['title+content'].values)
+    count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
+
+    count_df['date'] = pd.to_datetime(df['time']).dt.date
+    count_df = count_df[['date', word]]
+    top_words = count_df.iloc[:, 1:].sum().sort_values(ascending=False).head(100).index
+    top_words = [word]
+    top_words_count = count_df.groupby('date')[top_words].sum()
+    
+    fig = px.line(top_words_count, x=top_words_count.index, y=word, labels={
+        'date': 'Date',
+        word: 'Count'
+    }, title='Top Words Count by Date')
+    fig.update_xaxes(tickangle=45)
+    fig.show()
