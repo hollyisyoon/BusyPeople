@@ -57,12 +57,12 @@ st.title('외부 트렌드 모니터링 대시보드')
 #인풋
 col1, col2, col3 = st.beta_columns(3)
 with col1:
-    start_date = st.date_input("👉🏻 시작 날짜",
+    start_date = st.date_input("시작 날짜",
                            value=datetime.today() - timedelta(days=45),
                            min_value=datetime(2022, 4, 27),
                            max_value=datetime(2023, 4, 26))
 with col2:
-    end_date = st.date_input("끝 날짜 👈🏻", 
+    end_date = st.date_input("끝 날짜", 
                          value=datetime.today() - timedelta(days=30),    
                          min_value=datetime(2022, 4, 27),
                          max_value=datetime(2023, 4, 26))
@@ -71,20 +71,19 @@ with col3:
 
 col1, col2, col3 = st.beta_columns(3)    
 with col1:
-    st.write("🗓 ", start_date, "~", end_date)    
+    type = st.selectbox('기준',('단순 빈도(Countvertize)', '상대 빈도(TF-IDF)'))
 with col2:
     st.write(keyword_no, '개의 키워드 선택')   
 with col3:
     st.write('식물갤러리')   
 
+# Get top words
 start_date = pd.Timestamp(start_date)
 end_date = pd.Timestamp(end_date)
-
-# Get top words
-# start_date = pd.to_datetime(start_date)
-# end_date = pd.to_datetime(end_date)
-# df = df[(df['name'] == '식물갤러리') & (df['time'] >= start_date) & (df['time'] <= end_date)]
-words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
+if type == '단순 빈도(Countvertize)' :
+    words = get_tfidf_top_words(df, start_date, end_date, keyword_no, '식물갤러리')
+else :
+    print('hello')
 
 # Create word cloud
 wc = WordCloud(background_color="white", 
