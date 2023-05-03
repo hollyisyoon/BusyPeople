@@ -34,6 +34,8 @@ df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main
 df['time'] = pd.to_datetime(df['time'])
 df['name'] = df['name'].astype(str)
 
+stop_words=['식물', '화분']
+
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
     start_date = pd.to_datetime(start_date)
@@ -79,8 +81,8 @@ with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
     input_str = st.text_input('제거하고 싶은 키워드')
-    if input_str:
-        stopwords = input_str.split(', ')
+    # if input_str:
+    #     stopwords = input_str.split(', ')
 
 # Get top words
 start_date = pd.Timestamp(start_date)
