@@ -45,16 +45,14 @@ def print_topic_model(topics, rating):
 
 # 시각화1. 각 주제에서 상위 N개 키워드의 워드 클라우드
 def topic_wordcloud(model):
-    cand_mask = np.array(Image.open('/app/busypeople-stramlit/data/circle.png'))
     cloud = WordCloud(background_color='white',
                       font_path = "/app/busypeople-stramlit/font/NanumBarunGothic.ttf",
                       width=500,
                       height=500,
                       max_words=10,
                       colormap='tab10',
-                      prefer_horizontal=1.0,
-                      mask=cand_mask)
-    
+                      prefer_horizontal=1.0)
+        
     topics = model.show_topics(formatted=False)
 
     fig, axes = plt.subplots(2, 2, figsize=(6,6), sharex=True, sharey=True)
