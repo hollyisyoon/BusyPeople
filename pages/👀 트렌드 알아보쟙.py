@@ -26,6 +26,8 @@ df = pd.read_csv('/app/busypeople-stramlit/data/plant_gallery.csv', encoding='ut
 df['time'] = pd.to_datetime(df['time'])
 df['name'] = df['name'].astype(str)
 
+stopwords=['식물']
+
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
     start_date = pd.to_datetime(start_date)
@@ -70,8 +72,8 @@ with col1:
 with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
-    input_str = st.text_input('제거할 키워드')
-    stopwords = [x.strip() for x in input_str.split(',')]
+    # input_str = st.text_input('제거할 키워드')
+    # stopwords = [x.strip() for x in input_str.split(',')]
 
 
 # 타입 옵션
