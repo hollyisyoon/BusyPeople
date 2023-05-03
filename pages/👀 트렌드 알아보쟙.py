@@ -74,7 +74,7 @@ with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
     input_str = st.text_input('제거할 키워드')
-    # stopwords = [x.strip() for x in input_str.split(',')]
+    stopwords = [x.strip() for x in input_str.split(',')]
 
 
 # 타입 옵션
