@@ -108,12 +108,7 @@ with st.container():
     st.markdown(html, unsafe_allow_html=True)
 
 import streamlit as st
-from streamlit_elements import components
-
-fig = plt.figure()
-plt.plot([1, 2, 3, 4, 5])
-
-components.plotly_chart(fig)
+from streamlit_elements import elements
 
 with elements("media_player"):
 
