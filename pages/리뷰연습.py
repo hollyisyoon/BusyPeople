@@ -105,20 +105,24 @@ with st.container():
     html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
     st.markdown(html, unsafe_allow_html=True)
 
-with st.container():
-    url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
-    html = f'''
-
-
-    <iframe src={url} width=1000 height=800></iframe>
-    '''
-    st.markdown(html, unsafe_allow_html=True)
 
 with st.container():
-    col1, col2, col3 = st.columns([3,1,1])
+    col1 = st.columns([1])
 
 with col1:
     url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
-    html = '<iframe src=' + url + '></iframe>'
+    html = f'''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>대시보드</title>
+    </head>
+    <body>
+        <iframe src={url}></iframe>
+    </body>
+    </html>
+    '''
     st.markdown(html, unsafe_allow_html=True)
-
