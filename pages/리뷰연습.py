@@ -102,7 +102,9 @@ fig
 
 with st.container():
     url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:showVizHome=no&:embed=true"
-    html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
+    html = f'''
+        <iframe src={url} width=1600 height=900></iframe>
+    '''
     st.markdown(html, unsafe_allow_html=True)
 
 
