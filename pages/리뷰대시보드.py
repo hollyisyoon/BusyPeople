@@ -21,7 +21,7 @@ pie_chart = px.pie(df_파이차트, values=values, names=names)
 ########################################################################################################################
 # 레이아웃
 
-col1, col2, col3 = st.columns([2,1,1])
+col1, col2, col3 = st.columns([1,2,1])
 
 with col1:
    st.plotly_chart(pie_chart)
