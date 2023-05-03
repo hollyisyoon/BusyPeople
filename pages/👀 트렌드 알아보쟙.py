@@ -78,7 +78,7 @@ with col1:
 with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
-    input_str = st.text_input('Enter hashtags separated by commas')
+    input_str = st.text_input('제거할 키워드를 ,로 구분해서 입력')
     stopwords = [x.strip() for x in input_str.split(',')]
 
 # Get top words
