@@ -57,7 +57,21 @@ def keyword_timeseries(df, start_date, last_date, media, keyword):
     df = df.loc[mask]
     df_daily_views = df.groupby(df['time'].dt.date)['view'].sum().reset_index()
     return df_daily_views
-    
+
+def get_words(df, col, keyword):
+    text_list=[]
+    for sublist in df[col]:
+        text_list.append(sublist)
+    model = Word2Vec(text_list, vector_size=100, window=5, min_count=1, workers=3, epochs=30)
+    try:
+        similar_words = model.wv.most_similar(keyword, topn=10)
+        results = [(keyword, word, score) for word, score in similar_words]
+        return results
+    except:
+        return None
+
+def show_modal(df):
+    st.table(df) 
 
 #### 대시보드 시작 #####
 st.title('외부 트렌드 모니터링 대시보드')
@@ -137,8 +151,50 @@ words_count = Counter(words)
 words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
 
+
+#######세부 키워드########
 ### 시계열 그래프 ###
-search_word = st.text_input('어떤 키워드의 트렌드를 볼까요?', value='제라늄')
-df_daily_views = keyword_timeseries(df, start_date, end_date, media, search_word)
-fig = px.line(df_daily_views, x='time', y='view')
-st.plotly_chart(fig, use_container_width=True)
+st.title('관련 키워드 알아보세요!')
+col1, col2 = st.beta_columns(2)
+with col1:
+    search_word = st.text_input('🔮 무슨 키워드가 궁금하신가요', value='제라늄')
+    df_daily_views = keyword_timeseries(df, start_date, end_date, media, search_word)
+    fig = px.line(df_daily_views, x='time', y='view')
+    st.plotly_chart(fig, use_container_width=True)
+
+#### 연관검색어 #####
+with col2:
+    if st.button('분석하기'):
+        with st.spinner('분석 중입니다...'):
+            # Define the data
+            data = get_words(df,'title+content', search_word)
+            if data is None:
+                st.warning('다른 키워드를 입력해주세요. 추천 키워드 : 제라늄🌸')
+            else:
+                df_data = pd.DataFrame(data, columns=["키워드", "연관 키워드", "유사도"])
+
+            # Create the network graph
+            G = nx.DiGraph()
+            for row in data:
+                G.add_edge(row[0], row[1], weight=row[2])
+
+            pos = nx.spring_layout(G)
+
+            labels = {}
+            for edge in G.edges(data=True):
+                labels[(edge[0], edge[1])] = f"{edge[2]['weight']:.2f}"
+
+            edge_widths = [data[i][2] for i in range(len(data))]
+
+            nx.draw_networkx_edges(G, pos)
+            nx.draw_networkx_nodes(G, pos, node_color='lightblue', node_size=500)
+            nx.draw_networkx_labels(G, pos, font_size=12, font_family='NanumGothic', font_weight='bold')
+            nx.draw_networkx_edge_labels(G, pos, edge_labels=labels, font_size=12, font_family='NanumBarunGothic')
+
+            st.success(f"<{keyword}>에 대한 연관어 분석 결과입니다😀")
+            plt.axis('off')
+            st.pyplot()
+
+            expander = st.expander('분석 결과 데이터 보기')
+            with expander:
+                show_modal(df_data)
