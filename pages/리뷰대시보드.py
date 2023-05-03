@@ -1,4 +1,6 @@
 import streamlit as st
+import streamlit.components.v1 as components
+
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -152,7 +154,10 @@ net = Network(notebook=True, cdn_resources='in_line')
 
 net.from_nx(G)
 
-net.show('안녕.html')
+net.save_graph(f'/app/busypeople-stramlit/pyvis_graph.html')
+HtmlFile = open(f'/app/busypeople-stramlit/pyvis_graph.html', 'r', encoding='utf-8')
+components.html(HtmlFile.read(), height=435)
+
 ########################################################################################################################
 ########################################################################################################################
 ########################################################################################################################
