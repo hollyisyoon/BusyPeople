@@ -66,9 +66,9 @@ def get_count_top_words_modified(df, start_date, end_date, media, search_word):
     count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
 
     count_df['date'] = pd.to_datetime(df['time']).dt.date
-    count_df = count_df[['date', word]]
+    count_df = count_df[['date', search_word]]
     top_words = count_df.iloc[:, 1:].sum().sort_values(ascending=False).head(100).index
-    top_words = [word]
+    top_words = [search_word]
     time_top_words = count_df.groupby('date')[top_words].sum()
     return time_top_words
 
@@ -114,7 +114,6 @@ wc.generate_from_frequencies(words)
 
 
 ###########동적 워드 클라우드####################
-st.sidebar.subheader("1. 트렌드를 키워드로 알아보자!")
 # 컬러 팔레트 생성
 word_list=[]
 freq_list=[]
@@ -154,7 +153,6 @@ words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
 
 ###시계열 그래프###
-st.sidebar.subheader("2. 특정 단어를 자세히 알아보세요!")
 search_word = st.text_input('어떤 키워드의 트렌드를 볼까요?')
 time_keyword = get_count_top_words_modified(df, start_date, end_date, media, search_word)
 fig = px.line(time_keyword, x=time_keyword.index, y=word, labels={
