@@ -42,7 +42,6 @@ def time_series(df, start_date, end_date, media, search_word):
     return time_top_words
 
 search_word = st.text_input('어떤 키워드의 트렌드를 볼까요?', value='제라늄')
-
 col1, col2, col3 = st.beta_columns(3)
 with col1:
     start_date = st.date_input("시작 날짜",

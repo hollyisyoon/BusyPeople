@@ -50,6 +50,20 @@ def get_count_top_words(df, start_date, last_date, num_words, media):
     count_top_words = count_df.sum().sort_values(ascending=False).head(num_words).to_dict()
     return count_top_words
 
+def keyword_timeseries(df, start_date, end_date, media, keyword):
+    df['title+content'] = df['title+content'].astype(str)
+    df = df[(df['title+content'].str.contains(keyword)) & (df['name'] == media)]
+    df['time'] = pd.to_datetime(df['time'])
+    mask = (df['time'] >= start_date) & (df['time'] <= end_date)
+    df = df.loc[mask]
+
+    # 일별 view수의 평균
+    df_daily_views = df.groupby(df['time'].dt.date)['view'].sum().reset_index()
+
+    # plot 그리기
+    fig = px.line(df_daily_views, x='time', y='view')
+    fig.show()
+
 #### 대시보드 시작 #####
 st.title('외부 트렌드 모니터링 대시보드')
 
@@ -131,10 +145,4 @@ words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
 
 ###시계열 그래프###
-time_keyword = time_series(df, start_date, end_date, media, search_word)
-fig = px.line(time_keyword, x=time_keyword.index, y=word, labels={
-        'date': 'Date',
-        word: 'Count'
-    }, title='Count by Date')
-fig.update_xaxes(tickangle=45)
-fig.show()
+keyword_timeseries(df, start_date, end_date, media, search_word)
