@@ -15,4 +15,4 @@ file_list
 
 사용가능한 = 메모리.available / 1024**3
 
-st.write(f'{사용가능한} GB')
+st.write(f'{round(사용가능한, 1)} GB')
