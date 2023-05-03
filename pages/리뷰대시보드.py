@@ -15,7 +15,7 @@ df_리뷰_감성분석결과['time'] = pd.to_datetime(df_리뷰_감성분석결�
 df_리뷰_감성분석결과.head()
 
 df_파이차트 = pd.DataFrame(df_리뷰_감성분석결과['감성결과'].value_counts())
-values = '감성결과'
+values = 'count'
 names = list(df_파이차트.index)
 
 df_파이차트
