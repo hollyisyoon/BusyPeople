@@ -30,6 +30,8 @@ rain(emoji="🦝",
 #데이터 불러오기
 df = pd.read_csv('/app/busypeople-stramlit/data/plant_gallery.csv', encoding='utf8')
 df['time'] = pd.to_datetime(df['time'])
+def to_list(text):
+    return ast.literal_eval(text)
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
@@ -59,6 +61,7 @@ def keyword_timeseries(df, start_date, last_date, media, keyword):
     return df_daily_views
 
 def get_words(df, col, keyword):
+    df[col] = df[col].map(to_list)
     text_list=[]
     for sublist in df[col]:
         text_list.append(sublist)
