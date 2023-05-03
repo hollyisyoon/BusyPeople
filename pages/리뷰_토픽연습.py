@@ -32,7 +32,7 @@ def print_topic_model(topics, rating):
         topic_value = topic[1]
         topic_values.append(topic_value)
     topic_model = pd.DataFrame({"topic_num": list(range(1, len(topics) + 1)), "word_prop": topic_values})
-    display(topic_model)
+    st.dataframe(topic_model)
 
 # pyLDAvis 오류(일단 보류 후 2차 개선)
 # def lda_visualize(model, corpus, dictionary, rating):
