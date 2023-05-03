@@ -107,7 +107,7 @@ with st.container():
 
 
 with st.container():
-    col1 = st.columns([1])
+    col1, col2 = st.columns([1, 1])
 
 with col1:
     url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
