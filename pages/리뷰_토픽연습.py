@@ -45,7 +45,7 @@ def print_topic_model(topics, rating):
 # 시각화1. 각 주제에서 상위 N개 키워드의 워드 클라우드
 def topic_wordcloud(model):
     cloud = WordCloud(background_color='white',
-                      font_path = "NanumGothic",
+                      font_path = "/app/busypeople-stramlit/font/NanumBarunGothic.ttf",
                       width=500,
                       height=500,
                       max_words=10,
