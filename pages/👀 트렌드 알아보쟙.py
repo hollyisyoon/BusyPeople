@@ -34,8 +34,8 @@ df['name'] = df['name'].astype(str)
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
-    start_date = pd.to_datetime(start_date)
-    last_date = pd.to_datetime(last_date)
+    # start_date = pd.to_datetime(start_date)
+    # last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     tfidf_vectorizer = TfidfVectorizer(stop_words=stopwords)
     tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
@@ -46,8 +46,8 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, media):
 
 def get_count_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
-    start_date = pd.to_datetime(start_date)
-    last_date = pd.to_datetime(last_date)
+    # start_date = pd.to_datetime(start_date)
+    # last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     count_vectorizer = CountVectorizer(stop_words=stopwords)
     count = count_vectorizer.fit_transform(df['title+content'].values)
@@ -57,8 +57,6 @@ def get_count_top_words(df, start_date, last_date, num_words, media):
 
 def get_count_top_words_modified(df, start_date, end_date, media, search_word):
     df = df[df['name'] == media]
-    start_date = pd.to_datetime(start_date)
-    last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
     # countvectorizer
     count_vectorizer = CountVectorizer()
