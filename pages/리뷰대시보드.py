@@ -83,7 +83,7 @@ from gensim.models import Word2Vec
 import networkx as nx
 from pyvis.network import Network
 
-keywords = ['제라늄']
+keywords = ['제라늄', '식물', '응애']
 
 reviews = [eval(i) for i in df_리뷰_감성분석결과['kha_nng_은어전처리_sentence']]
 
