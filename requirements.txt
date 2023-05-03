@@ -19,3 +19,4 @@ psutil
 streamlit-elements
 requests
 openai
+streamlit_chat
