@@ -118,7 +118,7 @@ html = f'''
     <title>대시보드</title>
 </head>
 <body>
-    <iframe src={url} width=device-width></iframe>
+    <iframe src={url} width=1000 height=800></iframe>
 </body>
 </html>
 '''
