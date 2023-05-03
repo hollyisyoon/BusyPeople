@@ -97,7 +97,7 @@ wc = WordCloud(background_color="white",
             #    max_font_size=1000, 
                colormap='Spectral', 
                contour_color='steelblue',
-               font_path='/app/busypeople/font/NanumBarunGothic.ttf')
+               font_path='/app/busypeople-stramlit/font/NanumBarunGothic.ttf')
 wc.generate_from_frequencies(words)
 fig1, ax1 = plt.subplots()
 ax1.imshow(wc, interpolation='bilinear')
