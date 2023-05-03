@@ -131,7 +131,7 @@ fig = go.Figure(go.Scatter(
 ))
 fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
                   yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width=True)
 
 
 ##########정적 워드 클라우드##########
