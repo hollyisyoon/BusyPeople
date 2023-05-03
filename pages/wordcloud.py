@@ -1,4 +1,6 @@
 import wget
+font_url = 'https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/font/NanumBarunGothic.ttf'
+wget.download(font_url)
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -8,9 +10,10 @@ from wordcloud import WordCloud
 
 import streamlit as st
 
-font_url = 'https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/font/NanumBarunGothic.ttf'
+import os
 
-wget.download(font_url)
+os.getcwd()
+
 
 df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople/main/data/%EC%96%B4%EA%B0%84.csv')
 
@@ -107,6 +110,5 @@ fig.update_layout(xaxis=dict(domain=[0, 0.45]), yaxis=dict(domain=[0, 1]),
 fig
 
 url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:showVizHome=no&:embed=true"
-
 html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
 st.markdown(html, unsafe_allow_html=True)
