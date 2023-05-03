@@ -12,7 +12,7 @@ from wordcloud import WordCloud
 df_리뷰_감성분석결과 = pd.read_csv('/app/busypeople-stramlit/data/리뷰_감성분석결과.csv')
 df_리뷰_감성분석결과['time'] = pd.to_datetime(df_리뷰_감성분석결과['time'])
 
-df_파이차트 = pd.DataFrame(df['감성결과'].value_counts())
+df_파이차트 = pd.DataFrame(df_리뷰_감성분석결과['감성결과'].value_counts())
 values = '감성결과'
 names = df_파이차트.index
 
