@@ -101,16 +101,11 @@ fig.update_layout(xaxis=dict(domain=[0, 0.45]), yaxis=dict(domain=[0, 1]),
 fig
 
 with st.container():
+    col1 = st.columns(1)
+
+with col1:
     url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:showVizHome=no&:embed=true"
     html = f'''
         <iframe src={url} width=1600 height=900></iframe>
     '''
     st.markdown(html, unsafe_allow_html=True)
-
-
-
-url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
-html = f'''
-    <iframe src={url} width=1600 height=900 text-align=center></iframe>
-'''
-st.markdown(html, unsafe_allow_html=True)
