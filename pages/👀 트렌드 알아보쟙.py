@@ -192,7 +192,7 @@ if st.button('분석을 시작하기'):
         nx.draw_networkx_labels(G, pos, font_size=12, font_family='NanumGothic', font_weight='bold')
         nx.draw_networkx_edge_labels(G, pos, edge_labels=labels, font_size=12, font_family='NanumBarunGothic')
 
-        st.success(f"<{keyword}>에 대한 연관어 분석 결과입니다😀")
+        st.success(f"<{search_word}>에 대한 연관어 분석 결과입니다😀")
         plt.axis('off')
         st.pyplot()
 
