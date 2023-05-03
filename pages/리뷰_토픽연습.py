@@ -115,26 +115,23 @@ col1, col2, col3 = st.beta_columns(3)
 with col1:
     type = st.selectbox('기준',['자사', '경쟁사'])
 with col2:
-    pos_neg = st.st.radio('매체',['긍정', '부정'])
+    pos_neg = st.radio('매체',['긍정', '부정'])
 with col3:
     input_str = st.text_input('제거할 키워드')
     stopwords = stop_words.extend([x.strip() for x in input_str.split(',')])
 
-
-
-
-# 데이터셋 선택 상자 만들기
-dataset = st.selectbox('데이터셋 선택', ['자사(긍정리뷰)', '자사(부정리뷰)', '경쟁사(긍정리뷰)', '경쟁사(부정리뷰)'])
-
-# 선택한 데이터셋에 따라 함수 호출
-if dataset == '자사(긍정리뷰)':
-    get_topic_model('/app/busypeople-stramlit/data/자사긍정리뷰.csv')
-elif dataset == '자사(부정리뷰)':
-    get_topic_model('/app/busypeople-stramlit/data/자사부정리뷰.csv')
-elif dataset == '경쟁사(긍정리뷰)':
-    get_topic_model('/app/busypeople-stramlit/data/경쟁사긍정리뷰.csv')
+# 선택한 타입에 따라 함수 호출
+if type == '자사' and pos_neg == '긍정':
+    file_path = '/app/busypeople-stramlit/data/자사긍정리뷰.csv'
+elif type == '자사' and pos_neg == '부정':
+    file_path = '/app/busypeople-stramlit/data/자사부정리뷰.csv'
+elif type == '경쟁사' and pos_neg == '긍정':
+    file_path = '/app/busypeople-stramlit/data/경쟁사긍정리뷰.csv'
 else:
-    get_topic_model('/app/busypeople-stramlit/data/경쟁사부정리뷰.csv')
+    file_path = '/app/busypeople-stramlit/data/경쟁사부정리뷰.csv'
+
+get_topic_model(file_path)
+
 
 ###################################################
 
