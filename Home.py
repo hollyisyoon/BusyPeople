@@ -7,3 +7,10 @@ col1, col2, col3 = st.columns([2,1,1])
 with col1:
    st.header("식물병원이란?")
    st.video('https://youtu.be/n_QOv-nY_zM')
+
+
+import os
+
+path = os.getcwd()
+
+path
