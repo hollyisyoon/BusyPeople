@@ -52,7 +52,7 @@ def topic_wordcloud(model):
                       font_path = "/app/busypeople-stramlit/font/NanumBarunGothic.ttf",
                       width=500,
                       height=500,
-                      max_words=10,
+                      max_words=15,
                       colormap='tab10',
                       prefer_horizontal=1.0,
                       mask=cand_mask)
@@ -76,7 +76,7 @@ def topic_wordcloud(model):
     st.pyplot(fig, use_container_width=True)
 
 
-def get_topic_model(data, num_topics=4, passes=10, num_words=10):
+def get_topic_model(data, num_topics=4, passes=10, num_words=15):
     df = pd.read_csv(data)
 
     # 불용어 리스트
