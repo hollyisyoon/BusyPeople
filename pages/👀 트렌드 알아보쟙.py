@@ -16,6 +16,11 @@ from collections import Counter
 from wordcloud import WordCloud
 from datetime import datetime, timedelta
 
+import warnings
+warnings.filterwarnings("ignore", message="PyplotGlobalUseWarning")
+import networkx as nx
+from gensim.models import Word2Vec
+import time
 
 rain(emoji="🦝",
     font_size=54,
@@ -26,8 +31,6 @@ rain(emoji="🦝",
 df = pd.read_csv('/app/busypeople-stramlit/data/plant_gallery.csv', encoding='utf8')
 df['time'] = pd.to_datetime(df['time'])
 df['name'] = df['name'].astype(str)
-
-stopwords=['식물']
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
@@ -69,8 +72,10 @@ def get_count_top_words_modified(df, start_date, end_date, media, search_word):
     time_top_words = count_df.groupby('date')[top_words].sum()
     return time_top_words
 
+#### 대시보드 시작 #####
 st.title('외부 트렌드 모니터링 대시보드')
-#인풋
+
+#### 인풋 필터 #####
 col1, col2, col3 = st.beta_columns(3)
 with col1:
     start_date = st.date_input("시작 날짜",
@@ -109,6 +114,7 @@ wc.generate_from_frequencies(words)
 
 
 ###########동적 워드 클라우드####################
+st.sidebar.subheader("1. 트렌드를 키워드로 알아보자!")
 # 컬러 팔레트 생성
 word_list=[]
 freq_list=[]
@@ -142,17 +148,18 @@ fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, 
                   yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
 st.plotly_chart(fig, use_container_width=True)
 
-# 바그래프
+###### 바그래프 #####
 words_count = Counter(words)
 words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
 
 ###시계열 그래프###
+st.sidebar.subheader("2. 특정 단어를 자세히 알아보세요!")
 search_word = st.text_input('어떤 키워드의 트렌드를 볼까요?')
-time_keyword = get_count_top_words_modified(df, start_date, end_date, media, '제라늄')
+time_keyword = get_count_top_words_modified(df, start_date, end_date, media, search_word)
 fig = px.line(time_keyword, x=time_keyword.index, y=word, labels={
         'date': 'Date',
         word: 'Count'
-    }, title='Top Words Count by Date')
+    }, title='Count by Date')
 fig.update_xaxes(tickangle=45)
 fig.show()
