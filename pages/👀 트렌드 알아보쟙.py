@@ -79,9 +79,10 @@ with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
     pre_input = ['식물', '화분', '사진', '오늘']
-    input_str = st.multiselect('제외할 키워드', pre_input, allow_input=True)
-    if input_str:
-        stopwords = [x.strip() for x in ','.join(input_str).split(',')]
+    stopwords = st.multiselect('제외할 키워드', pre_input, allow_input=True)
+    if stopwords:
+        stopwords = [x.strip() for x in ','.join(stopwords).split(',')]
+
 
     # input_str = st.text_input('Enter hashtags separated by commas')
     # stopwords = [x.strip() for x in input_str.split(',')]
