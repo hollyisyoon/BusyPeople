@@ -53,7 +53,6 @@ def get_count_top_words(df, start_date, last_date, num_words, media):
 def keyword_timeseries(df, start_date, last_date, media, keyword):
     df['title+content'] = df['title+content'].astype(str)
     df = df[(df['title+content'].str.contains(keyword)) & (df['name'] == media)]
-    df['time'] = pd.to_datetime(df['time'])
     mask = (df['time'] >= start_date) & (df['time'] <= last_date)
     df = df.loc[mask]
     df_daily_views = df.groupby(df['time'].dt.date)['view'].sum().reset_index()
@@ -141,6 +140,6 @@ words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
 
 ###시계열 그래프###
-df_daily_views = keyword_timeseries(df, start_date, last_date, media, search_word)
+df_daily_views = keyword_timeseries(df, start_date, end_date, media, search_word)
 fig = px.line(df_daily_views, x='time', y='view')
 fig.show()
