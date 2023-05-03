@@ -132,8 +132,7 @@ with elements("dashboard"):
     # as first parameter, plus additional properties you can find in the GitHub links below.
 
     with dashboard.Grid(layout):
-        with mui.Box(key="first_item"):
-            st.bar_chart(bar_df)
+        mui.Box(st.bar_chart(bar_df), key="first_item")
         mui.Paper("Second item (cannot drag)", key="second_item")
         mui.Paper("Third item (cannot resize)", key="third_item")
 
