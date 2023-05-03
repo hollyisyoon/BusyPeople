@@ -41,23 +41,6 @@ df_리뷰_감성분석결과['time'] = pd.to_datetime(df_리뷰_감성분석결�
 
 words = get_count_top_words(df_리뷰_감성분석결과)
 ########################################################################################################################
-# 파이차트
-df_파이차트 = pd.DataFrame(df_리뷰_감성분석결과['감성결과'].value_counts())
-values = 'count'
-names = list(df_파이차트.index)
-
-pie_chart = go.Figure(data=[go.Pie(labels=list(df_파이차트.index), values=df_파이차트['count'])])
-# pie_chart = px.pie(df_파이차트, values=values, names=names)
-########################################################################################################################
-# 워드클라우드
-cand_mask = np.array(Image.open('/app/busypeople-stramlit/data/circle.png'))
-워드클라우드 = WordCloud(background_color="white", 
-                max_words=1000,
-                font_path = "/app/busypeople-stramlit/font/NanumBarunGothic.ttf", 
-                contour_width=3, 
-                colormap='Spectral', 
-                contour_color='white',
-                mask=cand_mask).generate_from_frequencies(words)
 ########################################################################################################################
 ########################################################################################################################
 ########################################################################################################################
@@ -70,9 +53,22 @@ cand_mask = np.array(Image.open('/app/busypeople-stramlit/data/circle.png'))
 col1, col2, col3 = st.columns([1,1,1])
 ########################################################################################################################
 with col1:
-   st.plotly_chart(pie_chart, use_container_width=True)
-
+    # 파이차트
+    df_파이차트 = pd.DataFrame(df_리뷰_감성분석결과['감성결과'].value_counts())
+    pie_chart = go.Figure(data=[go.Pie(labels=list(df_파이차트.index), values=df_파이차트['count'])])
+    st.plotly_chart(pie_chart, use_container_width=True)
+########################################################################################################################
 with col2:
+    # 워드클라우드
+    cand_mask = np.array(Image.open('/app/busypeople-stramlit/data/circle.png'))
+    워드클라우드 = WordCloud(
+        background_color="white", 
+        max_words=1000,
+        font_path = "/app/busypeople-stramlit/font/NanumBarunGothic.ttf", 
+        contour_width=3, 
+        colormap='Spectral', 
+        contour_color='white',
+        mask=cand_mask).generate_from_frequencies(words)
     fig, ax = plt.subplots()
     ax.imshow(워드클라우드, interpolation='bilinear')
     st.pyplot(fig, use_container_width=True)
