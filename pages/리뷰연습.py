@@ -114,12 +114,11 @@ with st.container():
     '''
     st.markdown(html, unsafe_allow_html=True)
 
-
-
 with st.container():
-    col1 = st.columns([1])
-    with col1:
-        url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
-        html = '<iframe src=' + url + '></iframe>'
-        st.markdown(html, unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([3,1,1])
+
+with col1:
+    url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
+    html = '<iframe src=' + url + '></iframe>'
+    st.markdown(html, unsafe_allow_html=True)
 
