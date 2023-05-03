@@ -67,10 +67,10 @@ cand_mask = np.array(Image.open('/app/busypeople-stramlit/data/circle.png'))
 col1, col2, col3 = st.columns([1,2,1])
 ########################################################################################################################
 with col1:
-   st.plotly_chart(pie_chart)
+   st.plotly_chart(pie_chart, use_container_width=True)
 
 with col2:
     fig, ax = plt.subplots(figsize=(12,12))
     ax.imshow(워드클라우드, interpolation='bilinear')
-    st.pyplot(fig)
+    st.pyplot(fig, use_container_width=True)
 ########################################################################################################################
