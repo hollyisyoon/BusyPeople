@@ -21,3 +21,4 @@ requests
 openai
 streamlit_chat
 Pillow
+pyvis
