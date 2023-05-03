@@ -70,7 +70,7 @@ with col1:
    st.plotly_chart(pie_chart, use_container_width=True)
 
 with col2:
-    fig, ax = plt.subplots(figsize=(12,12))
+    fig, ax = plt.subplots()
     ax.imshow(워드클라우드, interpolation='bilinear')
     st.pyplot(fig, use_container_width=True)
 ########################################################################################################################
