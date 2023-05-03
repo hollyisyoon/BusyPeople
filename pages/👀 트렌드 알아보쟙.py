@@ -86,8 +86,6 @@ with col3:
     input_str = st.text_input('제거할 키워드')
     stopwords = [x.strip() for x in input_str.split(',')]
 
-search_word = st.text_input('어떤 키워드의 트렌드를 볼까요?', value='제라늄')
-
 # 타입 옵션
 start_date = pd.Timestamp(start_date)
 end_date = pd.Timestamp(end_date)
@@ -139,7 +137,8 @@ words_count = Counter(words)
 words_df = pd.DataFrame([words_count]).T
 st.bar_chart(words_df)
 
-###시계열 그래프###
+### 시계열 그래프 ###
+search_word = st.text_input('어떤 키워드의 트렌드를 볼까요?', value='제라늄')
 df_daily_views = keyword_timeseries(df, start_date, end_date, media, search_word)
 fig = px.line(df_daily_views, x='time', y='view')
 st.plotly_chart(fig, use_container_width=True)
