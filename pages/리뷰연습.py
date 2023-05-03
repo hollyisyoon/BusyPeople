@@ -105,9 +105,8 @@ with st.container():
     col1 = st.columns(1)
 
 with elements():
-    mui.Typography("Hello world")
     url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:showVizHome=no&:embed=true"
-    html = f'''
-        <iframe src={url} width=1600 height=900></iframe>
-    '''
-    st.markdown(html, unsafe_allow_html=True)
+
+    html.div(
+        f'''<iframe src={url} width=1600 height=900></iframe>'''
+    )
