@@ -72,5 +72,5 @@ with col1:
 with col2:
     fig, ax = plt.subplots(figsize=(12,12))
     ax.imshow(워드클라우드, interpolation='bilinear')
-    st.pyplot(ax)
+    st.pyplot(fig)
 ########################################################################################################################
