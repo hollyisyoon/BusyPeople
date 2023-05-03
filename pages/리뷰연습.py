@@ -105,12 +105,12 @@ with st.container():
     html = f'''
         <iframe src={url} width=1600 height=900></iframe>
     '''
-    st.markdown(html, unsafe_allow_html=True, align_text='center')
+    st.markdown(html, unsafe_allow_html=True)
 
 
 
 url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
 html = f'''
-    <iframe src={url} width=1600 height=900></iframe>
+    <iframe src={url} width=1600 height=900 text-align=center></iframe>
 '''
 st.markdown(html, unsafe_allow_html=True)
