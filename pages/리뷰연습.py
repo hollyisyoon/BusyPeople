@@ -104,7 +104,7 @@ fig
 with st.container():
     col1 = st.columns(1)
 
-with elements():
+with elements("html"):
     url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:showVizHome=no&:embed=true"
 
     html.div(
