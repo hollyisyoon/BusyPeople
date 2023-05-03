@@ -85,9 +85,6 @@ if type == '단순 빈도(Countvertize)' :
 else :
     words = get_tfidf_top_words(df, start_date, end_date, keyword_no, media)
 
-st.write(type(words))
-
-
 #워드클라우드
 wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue')
 wc.generate_from_frequencies(words)
