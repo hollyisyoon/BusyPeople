@@ -19,4 +19,23 @@ file_list = os.listdir(path)
 
 file_list
 
-os.remove('NanumBarunGothic (5).ttf')
+list_remove = [
+"NanumBarunGothic (2).ttf",
+"NanumBarunGothic (9).ttf",
+"NanumBarunGothic (3).ttf",
+"NanumBarunGothic (13).ttf",
+"NanumBarunGothic (10).ttf",
+"NanumBarunGothic (4).ttf",
+"NanumBarunGothic (15).ttf",
+"NanumBarunGothic (12).ttf",
+"NanumBarunGothic (11).ttf",
+"NanumBarunGothic.ttf",
+"NanumBarunGothic (1).ttf",
+"NanumBarunGothic (8).ttf",
+"NanumBarunGothic (7).ttf",
+"NanumBarunGothic (6).ttf",
+"NanumBarunGothic (14).ttf"
+]
+
+for i in list_remove:
+   os.remove(i)
