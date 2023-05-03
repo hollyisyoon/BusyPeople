@@ -16,10 +16,10 @@ import koreanize_matplotlib
 # plt.rcParams['axes.unicode_minus'] = False
 # plt.rc('font', family = 'NanumBarunGothic')
 
-rain(emoji="🦝",
-    font_size=54,
-    falling_speed=10,
-    animation_length="infinite")
+# rain(emoji="🦝",
+#     font_size=54,
+#     falling_speed=10,
+#     animation_length="infinite")
 
 #데이터 전처리
 # def to_list(text):
