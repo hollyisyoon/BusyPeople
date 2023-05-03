@@ -91,28 +91,42 @@ wc = WordCloud(background_color="white", colormap='Spectral', contour_color='ste
 wc.generate_from_frequencies(words)
 
 
-############동적 워드 클라우드####################
-# # Wordcloud를 위한 데이터 프레임 생성
-# words_dict = dict(wc.words_)
-# df = pd.DataFrame({
-#     'text': list(words_dict.keys()),
-#     'size': list(words_dict.values()),
-#     'color': np.random.choice(palette, len(words_dict))
-# })
+###########동적 워드 클라우드####################
+# Wordcloud를 위한 데이터 프레임 생성
+words_dict = dict(wc.words_)
+df = pd.DataFrame({
+    'text': list(words_dict.keys()),
+    'size': list(words_dict.values()),
+    'color': np.random.choice(palette, len(words_dict))
+})
 
-# # 컬러 팔레트 생성
-# palette = np.random.choice(['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', 
-#                             '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'], 50, replace=True)
+# 컬러 팔레트 생성
+word_list=[]
+freq_list=[]
+fontsize_list=[]
+position_list=[]
+orientation_list=[]
+color_list=[]
 
-# # WordCloud 시각화를 위한 Scatter Plot 생성
-# fig = go.Figure(go.Scatter(
-#     x=[0], y=[0], mode="text",
-#     text=df['text'],
-#     textfont=dict(size=df['size'], color=df['color']),
-# ))
-# fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-#                   yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
-# st.plotly_chart(fig)
+for (word, freq), fontsize, position, orientation, color in wc.layout_:
+    word_list.append(word)
+    freq_list.append(freq)
+    fontsize_list.append(fontsize)
+    position_list.append(position)
+    orientation_list.append(orientation)
+    color_list.append(color)
+
+palette = color_list
+
+# WordCloud 시각화를 위한 Scatter Plot 생성
+fig = go.Figure(go.Scatter(
+    x=[0], y=[0], mode="text",
+    text=df['text'],
+    textfont=dict(size=df['size'], color=df['color']),
+))
+fig.update_layout(title="WordCloud", xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                  yaxis=dict(showgrid=False, zeroline=False, showticklabels=False), hovermode='closest')
+st.plotly_chart(fig)
 
 
 ##########정적 워드 클라우드##########
