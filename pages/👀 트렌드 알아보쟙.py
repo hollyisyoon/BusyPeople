@@ -30,6 +30,9 @@ rain(emoji="🦝",
 #데이터 불러오기
 df = pd.read_csv('/app/busypeople-stramlit/data/plant_gallery.csv', encoding='utf8')
 df['time'] = pd.to_datetime(df['time'])
+def to_list(text):
+    return ast.literal_eval(text)
+df['title+content'] = df['title+content'].map(to_list)
 
 def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     df = df[df['name'] == media]
