@@ -44,13 +44,15 @@ def print_topic_model(topics, rating):
 
 # 시각화1. 각 주제에서 상위 N개 키워드의 워드 클라우드
 def topic_wordcloud(model):
+    cand_mask = np.array(Image.open('/app/busypeople-stramlit/data/circle.png'))
     cloud = WordCloud(background_color='white',
                       font_path = "/app/busypeople-stramlit/font/NanumBarunGothic.ttf",
                       width=500,
                       height=500,
                       max_words=10,
                       colormap='tab10',
-                      prefer_horizontal=1.0)
+                      prefer_horizontal=1.0,
+                      mask=cand_mask)
     
     topics = model.show_topics(formatted=False)
 
@@ -105,6 +107,10 @@ def get_topic_model(data, num_topics=4, passes=10, num_words=10):
 
 ############streamlit 구현 ##################
 st.title('리뷰_토픽모델링')
+
+col1, col2 = st.beta_columns(2)
+
+
 
 # 데이터셋 선택 상자 만들기
 dataset = st.selectbox('데이터셋 선택', ['자사(긍정리뷰)', '자사(부정리뷰)', '경쟁사(긍정리뷰)', '경쟁사(부정리뷰)'])
