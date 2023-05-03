@@ -100,10 +100,17 @@ fig.update_layout(xaxis=dict(domain=[0, 0.45]), yaxis=dict(domain=[0, 1]),
 
 fig
 
-url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:showVizHome=no&:embed=true"
-html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
-st.markdown(html, unsafe_allow_html=True)
+with st.container():
+    url = "https://public.tableau.com/views/KBOOPS/1?:language=ko-KR&:showVizHome=no&:embed=true"
+    html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
+    st.markdown(html, unsafe_allow_html=True)
 
-url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
-html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
-st.markdown(html, unsafe_allow_html=True)
+with st.container():
+    url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
+    html = '<iframe src=' + url + ' width=1000 height=800></iframe>'
+    st.markdown(html, unsafe_allow_html=True)
+
+with st.container():
+    url = "https://public.tableau.com/views/top30_16830926966980/1?:showVizHome=no&embed=true/language=ko-KR&:display_count=n&:origin=viz_share_link"
+    html = '<iframe src=' + url + '></iframe>'
+    st.markdown(html, unsafe_allow_html=True)
