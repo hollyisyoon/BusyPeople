@@ -39,7 +39,7 @@ def get_tfidf_top_words(df, start_date, last_date, num_words, media):
     start_date = pd.to_datetime(start_date)
     last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
-    tfidf_vectorizer = TfidfVectorizer()
+    tfidf_vectorizer = TfidfVectorizer(stop_words=stopwords)
     tfidf = tfidf_vectorizer.fit_transform(df['title+content'].values)
     tfidf_df = pd.DataFrame(tfidf.todense(), columns=tfidf_vectorizer.get_feature_names_out())
     tfidf_top_words = tfidf_df.sum().sort_values(ascending=False).head(num_words).to_dict()
@@ -50,7 +50,7 @@ def get_count_top_words(df, start_date, last_date, num_words, media):
     start_date = pd.to_datetime(start_date)
     last_date = pd.to_datetime(last_date)
     df = df[(df['time'] >= start_date) & (df['time'] <= last_date)]
-    count_vectorizer = CountVectorizer()
+    count_vectorizer = CountVectorizer(stop_words=stopwords)
     count = count_vectorizer.fit_transform(df['title+content'].values)
     count_df = pd.DataFrame(count.todense(), columns=count_vectorizer.get_feature_names_out())
     count_top_words = count_df.sum().sort_values(ascending=False).head(num_words).to_dict()
@@ -78,11 +78,8 @@ with col1:
 with col2:
     media = st.selectbox('매체',('식물갤러리', '네이버카페'))
 with col3:
-    pre_input = ['식물', '화분', '사진', '오늘']
-    options = pre_input + ["기타"]
-    stopwords = st.multiselect("옵션을 선택하세요", options, default=["오늘"], allow_input=True)
-    # input_str = st.text_input('Enter hashtags separated by commas')
-    # stopwords = [x.strip() for x in input_str.split(',')]
+    input_str = st.text_input('Enter hashtags separated by commas')
+    stopwords = [x.strip() for x in input_str.split(',')]
 
 # Get top words
 start_date = pd.Timestamp(start_date)
