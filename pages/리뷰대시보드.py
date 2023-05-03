@@ -14,7 +14,7 @@ df_리뷰_감성분석결과['time'] = pd.to_datetime(df_리뷰_감성분석결�
 
 df_파이차트 = pd.DataFrame(df_리뷰_감성분석결과['감성결과'].value_counts())
 values = '감성결과'
-names = df_파이차트.index
+names = list(df_파이차트.index)
 
 파이차트 = px.pie(df_파이차트, values=values, names=names)
 
