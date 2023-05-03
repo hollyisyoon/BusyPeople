@@ -5,6 +5,7 @@ import gensim
 from matplotlib import pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.colors as mcolors
+from PIL import Image
 
 stop_words = [ '합니다', '하는', '할', '하고', '한다', 
              '그리고', '입니다', '그', '등', '이런', '및','제', '더','언늘','결국','생각','식물키',
