@@ -83,7 +83,7 @@ from pyvis.network import Network
 
 keywords = ['제라늄']
 
-reviews = [eval(i) for i in df['kha_nng_은어전처리_sentence']]
+reviews = [eval(i) for i in df_리뷰_감성분석결과['kha_nng_은어전처리_sentence']]
 
 networks = []
 for review in reviews:
