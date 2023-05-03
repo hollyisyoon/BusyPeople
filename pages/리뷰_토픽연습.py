@@ -103,6 +103,46 @@ def get_topic_model(data, num_topics=4, passes=10, num_words=10):
     topic_wordcloud(model)
 
 
+import requests
+import streamlit as st
+
+# ChatGPT API 서버 주소
+API_URL = "http://localhost:8080/complete"
+
+def chat(question):
+    # ChatGPT API 호출
+    response = requests.post(API_URL, json={"text": question}).json()
+    # 응답에서 답변 추출
+    answer = response["choices"][0]["text"]
+    return answer
+
+def main():
+    st.title("ChatGPT Demo")
+    st.write("Chat with ChatGPT model!")
+    question = st.text_input("Question:")
+    if st.button("Ask"):
+        answer = chat(question)
+        st.write("Answer:", answer)
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ############streamlit 구현 ##################
 st.title('리뷰_토픽모델링')
 

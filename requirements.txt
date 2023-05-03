@@ -18,3 +18,4 @@ streamlit-extras
 psutil
 streamlit-elements
 requests
+openai
