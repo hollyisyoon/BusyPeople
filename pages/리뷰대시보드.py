@@ -70,7 +70,7 @@ with col1:
 
 with col2:
     fig, ax = plt.subplots(figsize=(12,12))
-    plt.imshow(cloud, interpolation='bilinear')
+    plt.imshow(워드클라우드, interpolation='bilinear')
     plt.axis("off")
     # plt.show()
     st.pyplot(fig)
