@@ -111,11 +111,11 @@ dataset = st.selectbox('데이터셋 선택', ['자사(긍정리뷰)', '자사(�
 
 # 선택한 데이터셋에 따라 함수 호출
 if dataset == '자사(긍정리뷰)':
-    get_topic_model(/app/busypeople-stramlit/data/자사긍정리뷰.csv)
+    get_topic_model('/app/busypeople-stramlit/data/자사긍정리뷰.csv')
 elif dataset == '자사(부정리뷰)':
-    get_topic_model(/app/busypeople-stramlit/data/자사부정리뷰.csv)
+    get_topic_model('/app/busypeople-stramlit/data/자사부정리뷰.csv')
 elif dataset == '경쟁사(긍정리뷰)':
-    get_topic_model(/app/busypeople-stramlit/data/경쟁사긍정리뷰.csv)
+    get_topic_model('/app/busypeople-stramlit/data/경쟁사긍정리뷰.csv')
 else:
-    get_topic_model(/app/busypeople-stramlit/data/경쟁사부정리뷰.csv)
+    get_topic_model('/app/busypeople-stramlit/data/경쟁사부정리뷰.csv')
 
