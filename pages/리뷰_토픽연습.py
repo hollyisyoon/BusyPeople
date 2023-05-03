@@ -6,10 +6,6 @@ from matplotlib import pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 import matplotlib.colors as mcolors
 
-
-#데이터 불러오기
-df = pd.read_csv('https://raw.githubusercontent.com/seoinhyeok96/BusyPeople-stramlit/main/data/자사긍정리뷰.csv', encoding='utf-8-sig')
-
 stopwords = [ '합니다', '하는', '할', '하고', '한다', 
              '그리고', '입니다', '그', '등', '이런', '및','제', '더','언늘','결국','생각','식물키',
              '감사','ㅋㅋ','진짜','완전','요ㅎ','사용','정도','엄마','아이','원래','식물']
@@ -107,14 +103,19 @@ def get_topic_model(data, num_topics=4, passes=10, num_words=10):
     topic_wordcloud(model)
 
 
-##############################
+############streamlit 구현 ##################
 st.title('리뷰_토픽모델링')
 
-option = st.selectbox('Please select in selectbox!',
-                       ('자사(긍정리뷰)', '자사(부정리뷰)', '경쟁사(긍정리뷰)','경쟁사(부정리뷰)'))
-	
-  st.write('You selected:', option)
+# 데이터셋 선택 상자 만들기
+dataset = st.selectbox('데이터셋 선택', ['자사(긍정리뷰)', '자사(부정리뷰)', '경쟁사(긍정리뷰)', '경쟁사(부정리뷰)'])
 
-
-get_topic_model(df)
+# 선택한 데이터셋에 따라 함수 호출
+if dataset == '자사(긍정리뷰)':
+    get_topic_model(/app/busypeople-stramlit/data/자사긍정리뷰.csv)
+elif dataset == '자사(부정리뷰)':
+    get_topic_model(/app/busypeople-stramlit/data/자사부정리뷰.csv)
+elif dataset == '경쟁사(긍정리뷰)':
+    get_topic_model(/app/busypeople-stramlit/data/경쟁사긍정리뷰.csv)
+else:
+    get_topic_model(/app/busypeople-stramlit/data/경쟁사부정리뷰.csv)
 
