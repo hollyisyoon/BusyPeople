@@ -6,8 +6,6 @@ from wordcloud import WordCloud
 
 import streamlit as st
 
-import os
-
 df = pd.read_csv('/app/busypeople/data/어간.csv')
 
 df.columns = ['index','count']
