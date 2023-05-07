@@ -21,6 +21,8 @@ warnings.filterwarnings("ignore", message="PyplotGlobalUseWarning")
 import networkx as nx
 from gensim.models import Word2Vec
 import time
+import os
+import numpy as np
 
 rain(emoji="🦝",
     font_size=54,
@@ -84,12 +86,12 @@ col1, col2, col3 = st.beta_columns(3)
 with col1:
     start_date = st.date_input("시작 날짜",
                            value=datetime.today() - timedelta(days=45),
-                           min_value=datetime(2022, 4, 27),
+                           min_value=datetime(2022, 7, 27),
                            max_value=datetime(2023, 4, 26))
 with col2:
     end_date = st.date_input("끝 날짜", 
                          value=datetime.today() - timedelta(days=30),    
-                         min_value=datetime(2022, 4, 27),
+                         min_value=datetime(2022, 7, 27),
                          max_value=datetime(2023, 4, 26))
 with col3:
     keyword_no = st.number_input("📌 키워드", value=50, min_value=1, step=1)
