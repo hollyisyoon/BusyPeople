@@ -71,7 +71,7 @@ STYLE = """
 }
 
 .cta-container-wrapper.cta-container3 {
-    background-image: url('https://i.pinimg.com/564x/0f/ee/dd/0feeddea9499cf277f02dca1ca6bffe3.jpg');
+    background-image: url('https://i.pinimg.com/564x/15/82/7c/15827c807ea133c3345b951a47a5cb7c.jpg');
 }
 
 .rounded-image-container {
