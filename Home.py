@@ -127,7 +127,7 @@ st.markdown("""
     </div>""", unsafe_allow_html=True)
 
 ####CTA버튼####
-cta_container1, cta_container2, cta_container3 = st.beta_columns(2)
+cta_container1, cta_container2, cta_container3 = st.beta_columns(3)
 
 # CTA container 1
 with cta_container1:
