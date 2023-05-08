@@ -245,7 +245,7 @@ with profile2:
         <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FEKyyU%2FbtsereKWyAc%2F923KaucLcqdl0X07gbPKs1%2Fimg.jpg" class="profile-image">
         <div class="member-info">
             <h3> 김효정 </h3>
-            <p>데이터 분석 분야에 대한 지식과 경험을 갖춘 전문가를 꿈꾸고 있습니다. 다양한 팀원들과 함께 혹은 따로, 책임감 있게 일합니다. My Name is 보배</p>
+            <p>데이터 분석 분야에 대한 지식과 경험을 갖춘 전문가를 꿈꾸고 있습니다. 다양한 팀원들과 함께 혹은 따로, 책임감 있게 일합니다. </p>
         </div>
     </div>
     ''', unsafe_allow_html=True)
