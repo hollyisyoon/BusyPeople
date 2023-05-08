@@ -138,7 +138,7 @@ with cta_container1:
                 <h2 style='color: white; text-align: center'>User Guide</h2>
                 <p style='color: white; text-align: center'>바쁜 사람들이 처음이라면?</p>
                 <p style='text-align: center'>
-                    <a href='https://flowerbloomingtime.notion.site/e79013461ccb4f75bcb051a8b49f14a2' target='_blank'>
+                    <a href='https://flowerbloomingtime.notion.site/AI8-Final-Project-9def570e2e2c4adb9d910805ef8b1e4e' target='_blank'>
                         <button style='background-color: white; color: #3B81F5; padding: 8px 16px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer'>
                             살펴보기
                         </button>
