@@ -172,74 +172,83 @@ with cta_container2:
 st.markdown("---")
 st.markdown("""<h2>만든 사람들</h2>""", unsafe_allow_html=True)
 
-st.markdown('''   
-<div class="team-member">
-    <img src="https://media.licdn.com/dms/image/D5603AQGLWfWNmVBIYQ/profile-displayphoto-shrink_800_800/0/1665667362702?e=1689206400&v=beta&t=2RzA1JP0qxRbKImCayGJqEMuFZwZqbTR8QYGLAyz5Rg" class="profile-image">
-    <div class="member-info">
-        <h3> 윤훈영 </h3>
-        <p><code>Product</code> <code>SaaS</code> <code>광고</code> <code>BI</code> 에 관심이 많습니다.
-        🚀 매 순간, 끊임없이 성장을 즐기는 사람들과 챌린징한 과제가 있는 환경에서 재밌고 도전적으로 일해보고 싶어요!</p>
-        <details>
-            <summary><b>Feel Free..</b></summary>
-            <p>To Reach Me.. 💙적극 구직 중입니다💙 -> <a id="key" href="https://linkedin.com/in/hoonyoungyoon/" target="_blank">Linkedin</a></p>
-        </details>
+profile1, profile2 = st.beta_columns(2)
+with profile1:
+    st.markdown('''   
+    <div class="team-member">
+        <img src="https://media.licdn.com/dms/image/D5603AQGLWfWNmVBIYQ/profile-displayphoto-shrink_800_800/0/1665667362702?e=1689206400&v=beta&t=2RzA1JP0qxRbKImCayGJqEMuFZwZqbTR8QYGLAyz5Rg" class="profile-image">
+        <div class="member-info">
+            <h3> 윤훈영 </h3>
+            <p><code>Product</code> <code>SaaS</code> <code>광고</code> <code>BI</code> 에 관심이 많습니다.
+            🚀 매 순간, 끊임없이 성장을 즐기는 사람들과 챌린징한 과제가 있는 환경에서 재밌고 도전적으로 일해보고 싶어요!</p>
+            <details>
+                <summary><b>Feel Free..</b></summary>
+                <p>To Reach Me.. 💙적극 구직 중입니다💙 -> <a id="key" href="https://linkedin.com/in/hoonyoungyoon/" target="_blank">Linkedin</a></p>
+            </details>
+        </div>
     </div>
-</div>
-''', unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
-st.markdown('''   
-<div class="team-member">
-    <img src="https://blogpfthumb-phinf.pstatic.net/MjAyMzAzMjRfMTk0/MDAxNjc5NjU5NTY5MTU4.cTkkysdHNu7TxVaSnGM-WaFdYOKz-XlUYZHiqk9Y7Hkg.n_MJqADE_VCqT4AXrxnocLWp0hvS5xIeDieN5DRc2Ewg.PNG.kinghy00/profileImage.png" class="profile-image">
-    <div class="member-info">
-        <h3> 김희연 </h3>
-        <p><li>Goal: 바쁜 서비스 기획자되기</li>
-        <li>Dream: 검은머리가 파뿌리가 될때까지 배우고 성장하기</li>
-        </p>
-    </div>
-</div>
-''', unsafe_allow_html=True)
+with profile2:
+    st.markdown('''   
+        <div class="team-member">
+            <img src="https://blogpfthumb-phinf.pstatic.net/MjAyMzAzMjRfMTk0/MDAxNjc5NjU5NTY5MTU4.cTkkysdHNu7TxVaSnGM-WaFdYOKz-XlUYZHiqk9Y7Hkg.n_MJqADE_VCqT4AXrxnocLWp0hvS5xIeDieN5DRc2Ewg.PNG.kinghy00/profileImage.png" class="profile-image">
+            <div class="member-info">
+                <h3> 김희연 </h3>
+                <p><li>Goal: 바쁜 서비스 기획자되기</li>
+                <li>Dream: 검은머리가 파뿌리가 될때까지 배우고 성장하기</li>
+                </p>
+            </div>
+        </div>
+        ''', unsafe_allow_html=True)
 
-st.markdown('''   
-<div class="team-member">
-    <img src="https://github.com/seoinhyeok96/mypage/blob/main/d80f4ece871ddb035af1c1dab314bcf8-sticker.png?raw=true" class="profile-image">
-    <div class="member-info">
-        <h3> 서인혁 </h3>
-        <p><li>자기소개: 태블로 마스터가 되고싶은 그로스해커</li>
-        <li>꿈: 데이터 분석으로 숨겨진 인사이트 찾기</li>
-        <li>목표:  데이터를 활용할 수 있고 보수도 안정인 곳에 취업하기</li></p>
+profile1, profile2 = st.beta_columns(2)
+with profile1:
+    st.markdown('''   
+    <div class="team-member">
+        <img src="https://github.com/seoinhyeok96/mypage/blob/main/d80f4ece871ddb035af1c1dab314bcf8-sticker.png?raw=true" class="profile-image">
+        <div class="member-info">
+            <h3> 서인혁 </h3>
+            <p><li>자기소개: 태블로 마스터가 되고싶은 그로스해커</li>
+            <li>꿈: 데이터 분석으로 숨겨진 인사이트 찾기</li>
+            <li>목표:  데이터를 활용할 수 있고 보수도 안정인 곳에 취업하기</li></p>
+        </div>
     </div>
-</div>
-''', unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
-st.markdown('''   
-<div class="team-member">
-    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FEKyyU%2FbtsereKWyAc%2F923KaucLcqdl0X07gbPKs1%2Fimg.jpg" class="profile-image">
-    <div class="member-info">
-        <h3> 김효정 </h3>
-        <p>데이터 분석 분야에 대한 지식과 경험을 갖춘 전문가를 꿈꾸고 있습니다. 다양한 팀원들과 함께 혹은 따로, 책임감 있게 일합니다.</p>
+with profile2:
+    st.markdown('''   
+    <div class="team-member">
+        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FEKyyU%2FbtsereKWyAc%2F923KaucLcqdl0X07gbPKs1%2Fimg.jpg" class="profile-image">
+        <div class="member-info">
+            <h3> 김효정 </h3>
+            <p>데이터 분석 분야에 대한 지식과 경험을 갖춘 전문가를 꿈꾸고 있습니다. 다양한 팀원들과 함께 혹은 따로, 책임감 있게 일합니다.</p>
+        </div>
     </div>
-</div>
-''', unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
-st.markdown('''   
-<div class="team-member">
-    <img src="https://avatars.githubusercontent.com/u/94737255?v=4" class="profile-image">
-    <div class="member-info">
-        <h3> 박민정 </h3>
-        <p>데이터 수집부터 모델링, 시각화까지의 과정을 전문적으로 수행하고 싶은 미래의 데이터 분석가입니다. <code>통계학</code>, <code>머신 러닝</code>, <code>데이터 시각화</code>등 다양한 분야에 관심을 가지고 있습니다.</p>
+profile1, profile2 = st.beta_columns(2)
+with profile1:
+    st.markdown('''   
+    <div class="team-member">
+        <img src="https://avatars.githubusercontent.com/u/94737255?v=4" class="profile-image">
+        <div class="member-info">
+            <h3> 박민정 </h3>
+            <p>데이터 수집부터 모델링, 시각화까지의 과정을 전문적으로 수행하고 싶은 미래의 데이터 분석가입니다. <code>통계학</code>, <code>머신 러닝</code>, <code>데이터 시각화</code>등 다양한 분야에 관심을 가지고 있습니다.</p>
+        </div>
     </div>
-</div>
-''', unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
-st.markdown('''   
-<div class="team-member">
-    <img src="https://i.ytimg.com/vi/QgB10EW-KWc/maxresdefault.jpg" class="profile-image">
-    <div class="member-info">
-        <h3> 송준태 </h3>
-        <p>팔 하나로 산을 움직일 수 있는 힘이 있으며 펀치를 맞은 상대는 지평선 끝까지 날아간다고 한다. 생각하는 것보다도 먼저 손이 나온다.... 이거 없다고?</p>
+with profile2:
+    st.markdown('''   
+    <div class="team-member">
+        <img src="https://i.ytimg.com/vi/QgB10EW-KWc/maxresdefault.jpg" class="profile-image">
+        <div class="member-info">
+            <h3> 송준태 </h3>
+            <p>팔 하나로 산을 움직일 수 있는 힘이 있으며 펀치를 맞은 상대는 지평선 끝까지 날아간다고 한다. 생각하는 것보다도 먼저 손이 나온다.... 이거 없다고?</p>
+        </div>
     </div>
-</div>
-''', unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
 ####코멘트###
 st.markdown("---")
