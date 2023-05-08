@@ -203,7 +203,7 @@ with profile1:
         <div class="member-info">
             <h3> 윤훈영 </h3>
             <p><code>Product</code> <code>SaaS</code> <code>광고</code> <code>BI</code> 에 관심이 많습니다.
-            🚀 매 순간, 끊임없이 성장을 즐기는 사람들과 챌린징한 과제가 있는 환경에서 재밌고 도전적으로 일해보고 싶어요!</p>
+            🚀 매 순간, 끊임없이 성장하는 사람들과 챌린징한 과제가 있는 환경에서 도전적이고 재밌게 일해보고 싶어요!</p>
             <details>
                 <summary><b>Feel Free..</b></summary>
                 <p>To Reach Me.. 💙적극 구직 중입니다💙 -> <a id="key" href="https://linkedin.com/in/hoonyoungyoon/" target="_blank">Linkedin</a></p>
