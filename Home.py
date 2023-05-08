@@ -267,7 +267,7 @@ with profile2:
     <div class="team-member">
         <img src="https://i.ytimg.com/vi/QgB10EW-KWc/maxresdefault.jpg" class="profile-image">
         <div class="member-info">
-            <h3> 송준태 </h3>
+            <h3> 송준태(Full Stack Developer) </h3>
             <p>팔 하나로 산을 움직일 수 있는 힘이 있으며 펀치를 맞은 상대는 지평선 끝까지 날아간다고 한다. 생각하는 것보다도 먼저 손이 나온다.... 이거 없다고?</p>
         </div>
     </div>
