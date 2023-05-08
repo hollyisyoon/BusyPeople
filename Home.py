@@ -282,6 +282,7 @@ st.markdown("""
     alt="메인 이미지"></img>
   </div>
 """, unsafe_allow_html=True)
-st.markdown("""<detail><summary>설문폼 제출하기</summary>
+st.markdown("""<p><details><summary>설문폼 제출하기</summary>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfVMkoqtFTniuMFjlRkC1ToQBSmu9esdYtiXQ3-4Lj0hvwrsA/viewform?embedded=true" width="100%" height="1035" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-</detail>""", unsafe_allow_html=True)
+</details></p>""", unsafe_allow_html=True)
+
