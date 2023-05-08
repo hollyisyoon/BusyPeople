@@ -70,6 +70,10 @@ STYLE = """
     background-image: url('https://i.pinimg.com/564x/1f/87/d9/1f87d9f026f352bf2b662db576503186.jpg');
 }
 
+.cta-container-wrapper.cta-container3 {
+    background-image: url('https://i.pinimg.com/564x/0f/ee/dd/0feeddea9499cf277f02dca1ca6bffe3.jpg');
+}
+
 .rounded-image-container {
   width: 100%;
   height: 0;
@@ -123,7 +127,7 @@ st.markdown("""
     </div>""", unsafe_allow_html=True)
 
 ####CTA버튼####
-cta_container1, cta_container2 = st.beta_columns(2)
+cta_container1, cta_container2, cta_container3 = st.beta_columns(2)
 
 # CTA container 1
 with cta_container1:
@@ -152,6 +156,25 @@ with cta_container2:
             <div style='padding: 10px; border-radius: 10px'>
                 <h2 style='color: white; text-align: center'>Case Study</h2>
                 <p style='color: white; text-align: center'>비즈니스 시나리오에 적용해보자!</p>
+                <p style='text-align: center'>
+                    <a href='https://flowerbloomingtime.notion.site/Case-Study-ec47f93c2eb94327afd950cb197fb970' target='_blank'>
+                        <button style='background-color: white; color: #3B81F5; padding: 8px 16px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer'>
+                            시작하기
+                        </button>
+                    </a>
+                </p>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+with cta_container3:
+    st.markdown(
+        """
+        <div class="cta-container-wrapper cta-container3">
+            <div style='padding: 10px; border-radius: 10px'>
+                <h2 style='color: white; text-align: center'>Final PPT</h2>
+                <p style='color: white; text-align: center'>기획부터 제작과정이 궁금하다면?</p>
                 <p style='text-align: center'>
                     <a href='https://flowerbloomingtime.notion.site/Case-Study-ec47f93c2eb94327afd950cb197fb970' target='_blank'>
                         <button style='background-color: white; color: #3B81F5; padding: 8px 16px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer'>
