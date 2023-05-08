@@ -178,7 +178,7 @@ with cta_container3:
                 <p style='text-align: center'>
                     <a href='https://flowerbloomingtime.notion.site/Case-Study-ec47f93c2eb94327afd950cb197fb970' target='_blank'>
                         <button style='background-color: white; color: #3B81F5; padding: 8px 16px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer'>
-                            시작하기
+                            다운받기
                         </button>
                     </a>
                 </p>
@@ -282,6 +282,6 @@ st.markdown("""
     alt="메인 이미지"></img>
   </div>
 """, unsafe_allow_html=True)
-st.markdown("""
+st.markdown("""<detail><summary>설문폼 제출하기</summary>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfVMkoqtFTniuMFjlRkC1ToQBSmu9esdYtiXQ3-4Lj0hvwrsA/viewform?embedded=true" width="100%" height="1035" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-""", unsafe_allow_html=True)
+</detail>""", unsafe_allow_html=True)
