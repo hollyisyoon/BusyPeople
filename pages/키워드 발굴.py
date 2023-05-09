@@ -79,7 +79,7 @@ st.markdown("<h2 id='section1'>🪄 키워드 발굴</h2>", unsafe_allow_html=Tr
 def to_list(text):
     return ast.literal_eval(text)
 
-df = pd.read_csv('/app/BusyPeople-streamlit/data/df_트렌드팀_표준어처리후.csv')
+df = pd.read_csv('/app/busypeople-streamlit/data/df_트렌드팀_표준어처리후.csv')
 df['날짜'] = pd.to_datetime(df['날짜'])
 def extract_df(df, media, start_date, end_date, effect_size):
     start_date = pd.Timestamp(start_date)
