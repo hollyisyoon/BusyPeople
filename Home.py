@@ -218,8 +218,8 @@ with profile2:
             <img src="https://blogpfthumb-phinf.pstatic.net/MjAyMzAzMjRfMTk0/MDAxNjc5NjU5NTY5MTU4.cTkkysdHNu7TxVaSnGM-WaFdYOKz-XlUYZHiqk9Y7Hkg.n_MJqADE_VCqT4AXrxnocLWp0hvS5xIeDieN5DRc2Ewg.PNG.kinghy00/profileImage.png" class="profile-image">
             <div class="member-info">
                 <h3> 김희연 </h3>
-                <p><li>Goal: 바쁜 서비스 기획자되기</li>
-                <li>Dream: 검은머리가 파뿌리가 될때까지 배우고 성장하기</li>
+                <p><li>Goal: 바쁜 서비스 기획자되기❤️‍🔥</li>
+                <li>Dream: 검은머리가 파뿌리가 될때까지 배우고 성장하기🪄</li>
                 </p>
             </div>
         </div>
