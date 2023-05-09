@@ -176,7 +176,7 @@ with cta_container3:
                 <h2 style='color: white; text-align: center'>Final PPT</h2>
                 <p style='color: white; text-align: center'>기획부터 제작과정이 궁금하다면?</p>
                 <p style='text-align: center'>
-                    <a href='https://flowerbloomingtime.notion.site/Case-Study-ec47f93c2eb94327afd950cb197fb970' target='_blank'>
+                    <a href='https://docs.google.com/presentation/d/e/2PACX-1vRGslVSWuDuLFj9k2NR9Zx3fnu3cGw-lPcWZ-UwEsruT0kTJfR0gUoi2O_ZpKZmiBSMsRhOR7LElX4d/pub?start=false&loop=false&delayms=3000' target='_blank'>
                         <button style='background-color: white; color: #3B81F5; padding: 8px 16px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer'>
                             다운받기
                         </button>
