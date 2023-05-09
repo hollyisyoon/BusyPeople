@@ -82,7 +82,7 @@ STYLE = """
 }
 """
 
-df = pd.read_csv('/app/busypeople-streamlit/data/df_트렌드팀_표준어처리후.csv')
+df = pd.read_csv('/app/busypeople-streamlit/data/df_트렌드_github_.csv')
 # st.title('🔎 트렌드 키워드 분석')
 
 #########Section3 - 키워드 deepdive(시계열)############
