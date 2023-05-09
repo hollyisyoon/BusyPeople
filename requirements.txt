@@ -22,3 +22,5 @@ openai
 streamlit_chat
 Pillow
 pyvis
+markdownlit
+streamlit-tags
