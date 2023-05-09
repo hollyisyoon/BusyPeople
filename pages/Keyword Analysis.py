@@ -102,7 +102,7 @@ with col1:
                                max_value=max_date - timedelta(days=7))
     # 끝 날짜를 선택할 때 최소 날짜는 시작 날짜이며, 최대 날짜는 90일 이전까지로 제한
     end_date = st.date_input("끝 날짜",
-                             value=datetime(2022,6,15),
+                             value=start_date + timedelta(days=1)),
                              min_value=start_date + timedelta(days=7),
                              max_value=start_date + timedelta(days=60))
 with col2:
