@@ -309,7 +309,7 @@ def 네트워크(network_list, all_keywords):
 
     model = Word2Vec(networks, vector_size=100, window=5, min_count=1, workers=4, epochs=50)
 
-    G = nx.Graph(font_path='/app/streamlit/font/Pretendard-Bold.otf')
+    G = nx.Graph(font_path='/app/busypeople-streamlit/font/Pretendard-Bold.otf')
 
     # 중심 노드들을 노드로 추가
     for keyword in all_keywords:

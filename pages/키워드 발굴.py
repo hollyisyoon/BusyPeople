@@ -160,7 +160,7 @@ try :
         words = get_tfidf_top_words(standard_df, keyword_no)
 
     #워드클라우드
-    wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue', font_path="/app/BusyPeople-streamlit/font/Pretendard-Bold.otf")
+    wc = WordCloud(background_color="white", colormap='Spectral', contour_color='steelblue', font_path="/app/busypeople-streamlit/font/Pretendard-Bold.otf")
     wc.generate_from_frequencies(words)
     plt.figure(figsize=(10, 6))
     plt.imshow(wc, interpolation='bilinear')
