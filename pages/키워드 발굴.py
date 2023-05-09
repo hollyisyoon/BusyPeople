@@ -309,7 +309,7 @@ try:
     grouped_top_keyword = grouped_top_keyword[['평균 영향도', '키워드', 'URL']].sort_values(by='평균 영향도', ascending=False).reset_index(drop=True)
     grouped_top_keyword['평균 영향도'] = round(grouped_top_keyword['평균 영향도']*100,2)
     st.dataframe(grouped_top_keyword.head(20))
-excpet:
+except:
     st.warning('해당 기간내 영향도 높은 키워드가 없습니다')
 
 st.markdown(f"<style>{STYLE}</style>", unsafe_allow_html=True)
