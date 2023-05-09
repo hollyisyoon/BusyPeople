@@ -31,7 +31,7 @@ from pyvis.network import Network
 from wordcloud import WordCloud
 ########################################################################################################################
 # 데이터 로드 상수
-df_리뷰_감성분석결과 = pd.read_csv('/app/streamlit/data/리뷰7차(수정).csv')
+df_리뷰_감성분석결과 = pd.read_csv('/app/busypeople-streamlit/data/리뷰7차(수정).csv')
 df_리뷰_감성분석결과['time'] = pd.to_datetime(df_리뷰_감성분석결과['time'])
 
 # df_리뷰_감성분석결과['time'] = pd.to_datetime(df_리뷰_감성분석결과['time'], format='%Y-%m-%d')
@@ -262,11 +262,11 @@ if option == '상대 빈도(TF-IDF)':
 ########################################################################################################################
 # 워드클라우드
 with col4_1:
-    cand_mask = np.array(Image.open('/app/streamlit/data/circle.png'))
+    cand_mask = np.array(Image.open('/app/busypeople-streamlit/data/circle.png'))
     워드클라우드 = WordCloud(
         background_color="white", 
         max_words=1000,
-        font_path = "/app/streamlit/font/NanumBarunGothic.ttf", 
+        font_path = "/app/busypeople-streamlit/font/NanumBarunGothic.ttf", 
         contour_width=3, 
         colormap='Spectral', 
         contour_color='white',
@@ -343,7 +343,7 @@ def 네트워크(reviews):
 
     model = Word2Vec(networks, vector_size=100, window=5, min_count=1, workers=4, epochs=100)
 
-    G = nx.Graph(font_path='/app/streamlit/font/NanumBarunGothic.ttf')
+    G = nx.Graph(font_path='/app/busypeople-streamlit/font/NanumBarunGothic.ttf')
 
     # 중심 노드들을 노드로 추가
     for keyword in 키워드:
@@ -414,8 +414,8 @@ with st.container():
 with col6_1:
     try:
         net = 네트워크[0]
-        net.save_graph(f'/app/streamlit/pyvis_graph.html')
-        HtmlFile = open(f'/app/streamlit/pyvis_graph.html', 'r', encoding='utf-8')
+        net.save_graph(f'/app/busypeople-streamlit/pyvis_graph.html')
+        HtmlFile = open(f'/app/busypeople-streamlit/pyvis_graph.html', 'r', encoding='utf-8')
         components.html(HtmlFile.read(), height=435)
     except:
         st.write('존재하지 않는 키워드예요.')
@@ -493,9 +493,9 @@ def print_topic_model(topics, rating, key):
 
 # 시각화1. 각 주제에서 상위 N개 키워드의 워드 클라우드
 def topic_wordcloud(model,num_topics):
-    cand_mask = np.array(Image.open('/app/streamlit/data/circle.png'))
+    cand_mask = np.array(Image.open('/app/busypeople-streamlit/data/circle.png'))
     cloud = WordCloud(background_color='white',
-                      font_path = "/app/streamlit/font/NanumBarunGothic.ttf",
+                      font_path = "/app/busypeople-streamlit/font/NanumBarunGothic.ttf",
                       width=500,
                       height=500,
                       max_words=7,
@@ -599,7 +599,7 @@ with tab1:
 
     st.write('자사 긍정리뷰들의 주제별 키워드를 분석한 결과입니다. :sunglasses:')
 
-    file_path = '/app/streamlit/data/자사긍정(9차).csv'
+    file_path = '/app/busypeople-streamlit/data/자사긍정(10차).csv'
 
     if n_v_type =='명사':
         n_get_topic_model(file_path,9 , key='준탱이1')
@@ -618,7 +618,7 @@ with tab2:
 
     st.write('자사 부정리뷰들의 주제별 키워드를 분석한 결과입니다. :sweat:')
 
-    file_path = '/app/streamlit/data/자사부정(9차).csv'
+    file_path = '/app/busypeople-streamlit/data/자사부정(10차).csv'
 
     if n_v_type =='명사':
         n_get_topic_model(file_path,4, key='준탱이3')
@@ -642,38 +642,38 @@ with tab3:
     st.write('경쟁사 부정리뷰들의 주제별 키워드를 분석한 결과입니다. :wink:')
 
     if n_v_type =='명사' and d_type == '경쟁사 전체' :
-        file_path = '/app/streamlit/data/경쟁사부정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사부정(10차).csv'
         n_get_topic_model(file_path,10, key='준탱이5')
     elif n_v_type =='명사+동사+형용사' and d_type == '경쟁사 전체' :
-        file_path = '/app/streamlit/data/경쟁사부정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사부정(10차).csv'
         nv_get_topic_model(file_path,8, key='준탱이6')
 
     elif n_v_type =='명사' and d_type == '경쟁사-식물영양제' :
-        file_path = '/app/streamlit/data/경쟁사(식물영양제)부정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(식물영양제)부정(10차).csv'
         n_get_topic_model(file_path,5, key='준탱이7')
     elif n_v_type =='명사+동사+형용사' and d_type == '경쟁사-식물영양제' :
-        file_path = '/app/streamlit/data/경쟁사(식물영양제)부정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(식물영양제)부정(10차).csv'
         nv_get_topic_model(file_path,6, key='준탱이8')
     
     elif n_v_type =='명사' and d_type == '경쟁사-뿌리영양제' :
-        file_path = '/app/streamlit/data/경쟁사(뿌리영양제)부정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(뿌리영양제)부정(10차).csv'
         n_get_topic_model(file_path,5, key='준탱이9')
     elif n_v_type =='명사+동사+형용사' and d_type == '경쟁사-뿌리영양제' :
-        file_path = '/app/streamlit/data/경쟁사(뿌리영양제)부정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(뿌리영양제)부정(10차).csv'
         nv_get_topic_model(file_path,8, key='준탱이10')
     
     elif n_v_type =='명사' and d_type == '경쟁사-살충제' :
-        file_path = '/app/streamlit/data/경쟁사(살충제)부정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(살충제)부정(10차).csv'
         n_get_topic_model(file_path,4, key='준탱이11')
     elif n_v_type =='명사+동사+형용사' and d_type == '경쟁사-살충제' :
-        file_path = '/app/streamlit/data/경쟁사(살충제)부정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(살충제)부정(10차).csv'
         nv_get_topic_model(file_path,10, key='준탱이12')
     
     elif n_v_type =='명사' and d_type == '경쟁사-식물등' :
-        file_path = '/app/streamlit/data/경쟁사(식물등)부정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(식물등)부정(10차).csv'
         n_get_topic_model(file_path,9, key='준탱이13')
     elif n_v_type =='명사+동사+형용사' and d_type == '경쟁사-식물등' :
-        file_path = '/app/streamlit/data/경쟁사(식물등)부정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(식물등)부정(10차).csv'
         nv_get_topic_model(file_path,10, key='준탱이14')
     
 
@@ -694,38 +694,38 @@ with tab4:
     st.write('경쟁사 긍정리뷰들의 주제별 키워드를 분석한 결과입니다. :confounded:')
 
     if n_v_type =='명사' and d_type == '경쟁사 전체' :
-        file_path = '/app/streamlit/data/경쟁사긍정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사긍정(10차).csv'
         n_get_topic_model(file_path,10, key='준탱이15')
     elif n_v_type =='명사+동사+형용사' and d_type == '경쟁사 전체' :
-        file_path = '/app/streamlit/data/경쟁사긍정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사긍정(10차).csv'
         nv_get_topic_model(file_path,10, key='준탱이16')
 
     elif n_v_type =='명사' and d_type == '경쟁사-식물영양제' :
-        file_path = '/app/streamlit/data/경쟁사(식물영양제)긍정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(식물영양제)긍정(10차).csv'
         n_get_topic_model(file_path,10, key='준탱이17')
     elif n_v_type =='명사+동사+형용사' and d_type == '경쟁사-식물영양제' :
-        file_path = '/app/streamlit/data/경쟁사(식물영양제)긍정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(식물영양제)긍정(10차).csv'
         nv_get_topic_model(file_path,8, key='준탱이18')
     
     elif n_v_type =='명사' and d_type == '경쟁사-뿌리영양제' :
-        file_path = '/app/streamlit/data/경쟁사(뿌리영양제)긍정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(뿌리영양제)긍정(10차).csv'
         n_get_topic_model(file_path,10, key='준탱이19')
     elif n_v_type =='명사+동사+형용사' and d_type == '경쟁사-뿌리영양제' :
-        file_path = '/app/streamlit/data/경쟁사(뿌리영양제)긍정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(뿌리영양제)긍정(10차).csv'
         nv_get_topic_model(file_path,10, key='준탱이20')
     
     elif n_v_type =='명사' and d_type == '경쟁사-살충제' :
-        file_path = '/app/streamlit/data/경쟁사(살충제)긍정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(살충제)긍정(10차).csv'
         n_get_topic_model(file_path,10, key='준탱이21')
     elif n_v_type =='명사+동사+형용사' and d_type == '경쟁사-살충제' :
-        file_path = '/app/streamlit/data/경쟁사(살충제)긍정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(살충제)긍정(10차).csv'
         nv_get_topic_model(file_path,9, key='준탱이22')
     
     elif n_v_type =='명사' and d_type == '경쟁사-식물등' :
-        file_path = '/app/streamlit/data/경쟁사(식물등)긍정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(식물등)긍정(10차).csv'
         n_get_topic_model(file_path,10, key='준탱이23')
     elif n_v_type =='명사+동사+형용사' and d_type == '경쟁사-식물등' :
-        file_path = '/app/streamlit/data/경쟁사(식물등)긍정(10차).csv'
+        file_path = '/app/busypeople-streamlit/data/경쟁사(식물등)긍정(10차).csv'
         nv_get_topic_model(file_path,9, key='준탱이24')
 
 
