@@ -73,7 +73,7 @@ h3 {
 st.title("트렌드 키워드 분석")
 
 #########Section1 - wordcloud############
-st.markdown("<h2 id='section1'>🪄 키워드 발굴</h2>", unsafe_allow_html=True)
+st.markdown("<h2 id='section1'>🔎 키워드 발굴</h2>", unsafe_allow_html=True)
 
 ##데이터##
 def to_list(text):
