@@ -146,7 +146,7 @@ st.write("")
 st.subheader('**🔎 중요 키워드 발굴**')
 expander = st.expander('세부필터')
 with expander:
-    col2_1, col2_2= st.beta_columns(2)    
+    col2_1, col2_2= st.columns(2)    
     with col2_1:
         option = st.selectbox(
             '기준',
@@ -588,7 +588,7 @@ st.subheader('**🔎SWOT 분석**')
 tab1, tab2, tab3, tab4 = st.tabs(["**Strength(강점)**", "**Weakness(약점)**", "**Opportunity(기회)**", "**Threat(위협)**"])
 
 with tab1:
-    col1_, col2_ = st.beta_columns(2)    
+    col1_, col2_ = st.columns(2)    
 
     with col1_:
         n_v_type = st.selectbox('데이터 유형',['명사', '명사+동사+형용사'], key='selectbox1')
@@ -607,7 +607,7 @@ with tab1:
         nv_get_topic_model(file_path,10, key='준탱이2')
 
 with tab2:
-    col1_2_, col2_2_ = st.beta_columns(2)    
+    col1_2_, col2_2_ = st.columns(2)    
 
     with col1_2_:
         n_v_type = st.selectbox('데이터 유형',['명사', '명사+동사+형용사'], key='selectbox2')
@@ -627,7 +627,7 @@ with tab2:
 
 # 추가수정 필요############################################################################
 with tab3:
-    col1_3_, col2_3_, col3_3_ = st.beta_columns(3)    
+    col1_3_, col2_3_, col3_3_ = st.columns(3)    
 
     with col1_3_:
         n_v_type = st.selectbox('데이터 유형',['명사', '명사+동사+형용사'], key='selectbox3')
@@ -678,7 +678,7 @@ with tab3:
     
 
 with tab4:
-    col1_4_, col2_4_, col3_4_ = st.beta_columns(3)     
+    col1_4_, col2_4_, col3_4_ = st.columns(3)     
 
     with col1_4_:
         n_v_type = st.selectbox('데이터 유형',['명사', '명사+동사+형용사'], key='selectbox4')
