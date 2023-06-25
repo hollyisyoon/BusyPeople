@@ -87,7 +87,7 @@ df = pd.read_csv('/app/busypeople-streamlit/data/df_트렌드_github
 
 #########Section3 - 키워드 deepdive(시계열)############
 st.markdown("<h2 id='section4'>키워드 시계열 분석</h2>", unsafe_allow_html=True)
-col1, col2 = st.beta_columns((0.3, 0.7))
+col1, col2 = st.columns((0.3, 0.7))
 with col1:
     keyword1 = st.text_input('궁금한 키워드', value='제라늄')
 with col2:

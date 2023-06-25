@@ -92,7 +92,7 @@ def extract_df(df, media, start_date, end_date, effect_size):
     return standard_df, new_df
 
 ##인풋 필터 - 전체용##
-col1, col2, col3 = st.beta_columns(3)
+col1, col2, col3 = st.columns(3)
 min_date = datetime(2022, 6, 1)
 max_date = datetime(2023, 4, 26)
 with col1:
@@ -116,7 +116,7 @@ standard_df, new_df = extract_df(df, media, start_date, end_date, effect_size)
 ##인풋 필터 - 워드클라우드용##
 expander = st.expander('세부필터')
 with expander:
-    col1, col2= st.beta_columns(2)    
+    col1, col2= st.columns(2)    
     with col1:
         type = st.selectbox('기준',('빈도(Count)','상대 빈도(TF-IDF)'), 
                             help="""Count: 단어의 빈도 순으로 크기를 설정합니다. TF-IDF: 전체 리뷰 내 빈도와 개별 리뷰 내 빈도를 모두 고려해 크기를 설정합니다.""")
