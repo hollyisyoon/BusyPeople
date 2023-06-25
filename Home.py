@@ -127,7 +127,7 @@ st.markdown("""
     </div>""", unsafe_allow_html=True)
 
 ####CTA버튼####
-cta_container1, cta_container2, cta_container3 = st.beta_columns(3)
+cta_container1, cta_container2, cta_container3 = st.columns(3)
 
 # CTA container 1
 with cta_container1:
@@ -195,7 +195,7 @@ with cta_container3:
 st.markdown("---")
 st.markdown("""<h2>만든 사람들</h2>""", unsafe_allow_html=True)
 
-profile1, profile2 = st.beta_columns(2)
+profile1, profile2 = st.columns(2)
 with profile1:
     st.markdown('''   
     <div class="team-member">
@@ -225,7 +225,7 @@ with profile2:
         </div>
         ''', unsafe_allow_html=True)
 
-profile1, profile2 = st.beta_columns(2)
+profile1, profile2 = st.columns(2)
 with profile1:
     st.markdown('''   
     <div class="team-member">
@@ -250,7 +250,7 @@ with profile2:
     </div>
     ''', unsafe_allow_html=True)
 
-profile1, profile2 = st.beta_columns(2)
+profile1, profile2 = st.columns(2)
 with profile1:
     st.markdown('''   
     <div class="team-member">
